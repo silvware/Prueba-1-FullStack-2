@@ -28,7 +28,7 @@ function agregarAlCarrito(nombreProducto, precioProducto, imagenProducto) {
         carrito.push(nuevoProducto); 
     }
 
-    // Guardamos el arreglo en LocalStorage (exigencia de la rúbrica)
+    //guardado de locale storage
     localStorage.setItem('carritoTienda', JSON.stringify(carrito));
     
     actualizarContador(); 
@@ -97,7 +97,7 @@ function renderizarCarrito() {
 }
 
 function eliminarDelCarrito(posicion) {
-    carrito.splice(posicion, 1); // Borra 1 elemento en la posición indicada
+    carrito.splice(posicion, 1); 
     localStorage.setItem('carritoTienda', JSON.stringify(carrito)); // Guarda los cambios
     
     // Volvemos a dibujar todo actualizado
@@ -122,4 +122,47 @@ function mostrarOcultarPass(idDelInput, boton) {
         input.type = "password";
         boton.innerText = "👁️"; 
     }
+}
+
+let formRegistro = document.getElementById('formulario-registro');
+
+if (formRegistro) {
+    formRegistro.addEventListener('submit', function(evento) {
+        // 1. Evitar que la página se recargue cuando presionas el boton
+        evento.preventDefault(); 
+
+        // Guardar registro
+        let nombre = document.getElementById('nombreRegistro').value;
+        let correo = document.getElementById('emailRegistro').value;
+        let pass1 = document.getElementById('pass1Registro').value;
+        let pass2 = document.getElementById('pass2Registro').value;
+
+        // 3. ¡LA PRUEBA DE LA CONSOLA! (Lo que tú preguntabas)
+        console.log("--- INTENTO DE REGISTRO ---");
+        console.log("Nombre capturado:", nombre);
+        console.log("Correo capturado:", correo);
+        
+        // 4. Validación rápida de ejemplo
+        if (pass1 !== pass2) {
+            console.error("Error: Las contraseñas no son iguales.");
+            alert("Las contraseñas no coinciden. Intenta de nuevo.");
+            return; // Corta la función aquí, no avanza
+        }
+
+        // 5. Si todo está bien, lo guardamos en LocalStorage simulando una Base de Datos
+        let nuevoUsuario = {
+            nombre: nombre,
+            email: correo,
+            password: pass1,
+            rol: 'cliente' //Rol por defecto creado
+        };
+
+        localStorage.setItem('usuarioActivo', JSON.stringify(nuevoUsuario));
+        
+        console.log("¡Éxito! Usuario guardado en LocalStorage:", nuevoUsuario);
+        alert("¡Registro exitoso! Bienvenido " + nombre);
+        
+        // 6. Redirigir a la tienda
+        window.location.href = "pc.html"; 
+    });
 }
