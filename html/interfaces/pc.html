@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,9 +8,10 @@
     <link rel="stylesheet" href="../../css/general.css">
     <title>Think-Tech · Computadoras</title>
 </head>
-<body>
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+<body class="bg-light">
+    
+    <!-- NAVBAR COMPLETO Y ACTUALIZADO -->
+    <nav class="navbar navbar-expand-lg bg-white border-bottom shadow-sm">
       <div class="container-fluid">
         <a class="navbar-brand" href="index.html">
             <img src="../../resources/logopagina.png" width="60" alt="Logo">
@@ -19,27 +20,44 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          
+          <!-- Enlaces de navegación principales (Izquierda) -->
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
+              <a class="nav-link" href="index.html">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active fw-bold" aria-current="page" href="pc.html">Computadoras</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="accesorios.html">Accesorios</a>
             </li>
-          </ul>
-          <!-- Carrito de compras agregado (con ID para el JS) -->
-          <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link fw-bold text-primary" href="carrito.html">🛒 Carrito (<span id="contador-carrito">0</span>)</a>
+              <a class="nav-link" href="nosotros.html">Nosotros</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contacto.html">Contacto</a>
+            </li>
+          </ul>
+          
+          <!-- Enlaces de usuario y carrito (Derecha) -->
+          <ul class="navbar-nav ms-auto align-items-center">
+            <li class="nav-item me-2">
+              <a class="nav-link text-primary fw-bold" href="login.html">👤 Ingresar</a>
+            </li>
+            <li class="nav-item me-3">
+              <a class="nav-link text-success fw-bold" href="registro.html">📝 Registro</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link fw-bold text-dark" href="carrito.html">🛒 Carrito (<span id="contador-carrito">0</span>)</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
 
-    <!-- INICIO DEL CONTENIDO PRINCIPAL (Etiqueta semántica obligatoria) -->
+    <!-- INICIO DEL CONTENIDO PRINCIPAL -->
     <main>
-        
         <!-- CARRUSEL -->
         <div class="container mb-5 mt-4">
           <div id="carruselPC" class="carousel slide border rounded" data-bs-ride="carousel">
@@ -90,12 +108,11 @@
         <div class="container pb-5">
           <h2 class="mb-4">Catálogo completo</h2>
           
-          <!-- CONTENEDOR SECTION (Etiqueta semántica obligatoria) -->
           <section class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
 
             <!-- PRODUCTO 1 -->
             <article class="col">
-              <div class="card h-100">
+              <div class="card h-100 border-0 shadow-sm">
                 <div class="ratio ratio-4x3 bg-light">
                   <img src="../../resources/ThinkpadT14.jpg" class="card-img-top object-fit-cover" alt="Lenovo ThinkPad T14">
                 </div>
@@ -113,7 +130,7 @@
 
             <!-- PRODUCTO 2 -->
             <article class="col">
-              <div class="card h-100">
+              <div class="card h-100 border-0 shadow-sm">
                 <div class="ratio ratio-4x3 bg-light">
                   <img src="../../resources/macbookm3.jpg" class="card-img-top object-fit-cover" alt="MacBook Air M3">
                 </div>
@@ -131,7 +148,7 @@
 
             <!-- PRODUCTO 3 -->
             <article class="col">
-              <div class="card h-100">
+              <div class="card h-100 border-0 shadow-sm">
                 <div class="ratio ratio-4x3 bg-light">
                   <img src="../../resources/dell.jpg" class="card-img-top object-fit-cover" alt="Dell XPS 13">
                 </div>
@@ -149,7 +166,7 @@
 
             <!-- PRODUCTO 4 -->
             <article class="col">
-              <div class="card h-100">
+              <div class="card h-100 border-0 shadow-sm">
                 <div class="ratio ratio-4x3 bg-light">
                   <img src="../../resources/asus.png" class="card-img-top object-fit-cover" alt="ASUS ROG Strix G16">
                 </div>
@@ -167,7 +184,7 @@
 
             <!-- PRODUCTO 5 -->
             <article class="col">
-              <div class="card h-100">
+              <div class="card h-100 border-0 shadow-sm">
                 <div class="ratio ratio-4x3 bg-light">
                   <img src="../../resources/hp.png" class="card-img-top object-fit-cover" alt="HP Pavilion 15">
                 </div>
@@ -185,7 +202,7 @@
 
             <!-- PRODUCTO 6 -->
             <article class="col">
-              <div class="card h-100">
+              <div class="card h-100 border-0 shadow-sm">
                 <div class="ratio ratio-4x3 bg-light">
                   <img src="../../resources/acer.jpg" class="card-img-top object-fit-cover" alt="Acer Aspire 5">
                 </div>
@@ -206,7 +223,7 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="border-top py-4 text-center text-muted small">
+    <footer class="border-top py-4 text-center text-muted small mt-5 bg-white">
       © 2026 Think-Tech. Todos los derechos reservados.
     </footer>
 
