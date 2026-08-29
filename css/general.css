@@ -1,3 +1,4 @@
+
 @font-face{
     font-family: "Open Sans";
     src:
@@ -5,4 +6,63 @@
 	url("../fonts/open-sans.regular.ttf") format('truetype');
 }
 
+.bg {
+    display:block;
+    background-color:#36454F;
+}
 
+.left {
+    display:block;
+    margin-left: 2%;
+    margin-right: auto;
+    width: 6%;
+}
+
+
+.hText{
+    display: block;
+    font-family:"Open Sans";
+    color: black;
+    margin-left: 2%;
+    margin-top: 1%;
+}
+
+.nText{
+    display:block;
+    font-size: 16px;
+    font-family: "Open Sans";
+    color: black;
+    display: block;
+    margin-left: 2%;
+    margin-top: 1%;
+}
+
+.hTextAnim {
+    color: white;
+    margin-left: 10%;
+    font-family: "Open Sans";
+    position: relative;
+    animation: hTextMove 2s;
+    animation-fill-mode:forwards;
+}
+
+.nTextAnim{
+    color: white;
+    margin-left: 10%;
+    font-family: "Open Sans";
+    position: relative;
+    animation: nTextMove 2s;
+    animation-delay: 2s;
+    animation-fill-mode:forwards;
+}
+
+
+@keyframes hTextMove {
+    from {left: -600px;}
+    to   {left: 0px; color:black;}
+}
+
+@keyframes nTextMove {
+    from {left: -600px;}
+    to {left: 0px; color:black;}
+}
