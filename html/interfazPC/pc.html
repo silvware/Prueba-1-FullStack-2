@@ -27,10 +27,10 @@
               <a class="nav-link" href="acces.html">Accesorios</a>
             </li>
           </ul>
-          <!-- Carrito de compras agregado -->
+          <!-- Carrito de compras agregado (con ID para el JS) -->
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link fw-bold text-primary" href="carrito.html">🛒 Carrito (0)</a>
+              <a class="nav-link fw-bold text-primary" href="carrito.html">🛒 Carrito (<span id="contador-carrito">0</span>)</a>
             </li>
           </ul>
         </div>
@@ -51,7 +51,7 @@
             <div class="carousel-inner">
               <div class="carousel-item active">
                 <div class="ratio ratio-21x9 bg-light">
-                  <img src="img/ThinkpadT14.jpeg" class="object-fit-cover" alt="Lenovo ThinkPad T14">
+                  <img src="../../resources/ThinkpadT14.jpg" class="object-fit-cover" alt="Lenovo ThinkPad T14">
                 </div>
                 <div class="carousel-caption bg-dark bg-opacity-50 rounded">
                   <h5>Lenovo ThinkPad T14 Gen 4</h5>
@@ -60,7 +60,7 @@
               </div>
               <div class="carousel-item">
                 <div class="ratio ratio-21x9 bg-light">
-                  <img src="img/macbookm3.jpeg" class="object-fit-cover" alt="MacBook Air M3">
+                  <img src="../../resources/macbookm3.jpg" class="object-fit-cover" alt="MacBook Air M3">
                 </div>
                 <div class="carousel-caption bg-dark bg-opacity-50 rounded">
                   <h5>MacBook Air 13" M3</h5>
@@ -69,7 +69,7 @@
               </div>
               <div class="carousel-item">
                 <div class="ratio ratio-21x9 bg-light">
-                  <img src="img/asus.jpeg" class="object-fit-cover" alt="ASUS ROG Strix G16">
+                  <img src="../../resources/asus.png" class="object-fit-cover" alt="ASUS ROG Strix G16">
                 </div>
                 <div class="carousel-caption bg-dark bg-opacity-50 rounded">
                   <h5>ASUS ROG Strix G16</h5>
@@ -93,11 +93,11 @@
           <!-- CONTENEDOR SECTION (Etiqueta semántica obligatoria) -->
           <section class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
 
-            <!-- PRODUCTO -->
+            <!-- PRODUCTO 1 -->
             <article class="col">
               <div class="card h-100">
                 <div class="ratio ratio-4x3 bg-light">
-                  <img src="img/ThinkpadT14.jpeg" class="card-img-top object-fit-cover" alt="Lenovo ThinkPad T14">
+                  <img src="../../resources/ThinkpadT14.jpg" class="card-img-top object-fit-cover" alt="Lenovo ThinkPad T14">
                 </div>
                 <div class="card-body">
                   <span class="badge bg-secondary mb-2">Oficina</span>
@@ -105,7 +105,7 @@
                   <p class="small text-muted mb-3">i5-1335U | 16GB RAM | 512GB SSD</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <strong>$649.990</strong>
-                    <button class="btn btn-outline-primary btn-sm btn-agregar">Añadir al carrito</button>
+                    <button class="btn btn-outline-primary btn-sm btn-agregar" onclick="agregarAlCarrito('Lenovo ThinkPad T14 Gen 4', 649990, '../../resources/ThinkpadT14.jpg')">Añadir al carrito</button>
                   </div>
                 </div>
               </div>
@@ -115,15 +115,15 @@
             <article class="col">
               <div class="card h-100">
                 <div class="ratio ratio-4x3 bg-light">
-                  <img src="img/macbookm3.jpeg" class="card-img-top object-fit-cover" alt="MacBook Air M3">
+                  <img src="../../resources/macbookm3.jpg" class="card-img-top object-fit-cover" alt="MacBook Air M3">
                 </div>
                 <div class="card-body">
                   <span class="badge bg-secondary mb-2">Ultrabook</span>
-                  <h5 class="card-title">MacBook Air 13" M3</h5>
+                  <h5 class="card-title">MacBook Air 13 M3</h5>
                   <p class="small text-muted mb-3">M3 8-core | 8GB RAM | 256GB SSD</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <strong>$999.990</strong>
-                    <button class="btn btn-outline-primary btn-sm btn-agregar">Añadir al carrito</button>
+                    <button class="btn btn-outline-primary btn-sm btn-agregar" onclick="agregarAlCarrito('MacBook Air 13 M3', 999990, '../../resources/macbookm3.jpg')">Añadir al carrito</button>
                   </div>
                 </div>
               </div>
@@ -133,7 +133,7 @@
             <article class="col">
               <div class="card h-100">
                 <div class="ratio ratio-4x3 bg-light">
-                  <img src="img/dell.jpeg" class="card-img-top object-fit-cover" alt="Dell XPS 13">
+                  <img src="../../resources/dell.jpg" class="card-img-top object-fit-cover" alt="Dell XPS 13">
                 </div>
                 <div class="card-body">
                   <span class="badge bg-secondary mb-2">Ultrabook</span>
@@ -141,7 +141,7 @@
                   <p class="small text-muted mb-3">i7-1355U | 16GB RAM | 512GB SSD</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <strong>$1.099.990</strong>
-                    <button class="btn btn-outline-primary btn-sm btn-agregar">Añadir al carrito</button>
+                    <button class="btn btn-outline-primary btn-sm btn-agregar" onclick="agregarAlCarrito('Dell XPS 13', 1099990, '../../resources/dell.jpg')">Añadir al carrito</button>
                   </div>
                 </div>
               </div>
@@ -151,7 +151,7 @@
             <article class="col">
               <div class="card h-100">
                 <div class="ratio ratio-4x3 bg-light">
-                  <img src="img/asus.jpeg" class="card-img-top object-fit-cover" alt="ASUS ROG Strix G16">
+                  <img src="../../resources/asus.png" class="card-img-top object-fit-cover" alt="ASUS ROG Strix G16">
                 </div>
                 <div class="card-body">
                   <span class="badge bg-secondary mb-2">Gaming</span>
@@ -159,7 +159,7 @@
                   <p class="small text-muted mb-3">i7-13650HX | 16GB RAM | RTX 4060</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <strong>$1.299.990</strong>
-                    <button class="btn btn-outline-primary btn-sm btn-agregar">Añadir al carrito</button>
+                    <button class="btn btn-outline-primary btn-sm btn-agregar" onclick="agregarAlCarrito('ASUS ROG Strix G16', 1299990, '../../resources/asus.png')">Añadir al carrito</button>
                   </div>
                 </div>
               </div>
@@ -169,7 +169,7 @@
             <article class="col">
               <div class="card h-100">
                 <div class="ratio ratio-4x3 bg-light">
-                  <img src="img/hp.jpeg" class="card-img-top object-fit-cover" alt="HP Pavilion 15">
+                  <img src="../../resources/hp.png" class="card-img-top object-fit-cover" alt="HP Pavilion 15">
                 </div>
                 <div class="card-body">
                   <span class="badge bg-secondary mb-2">Oficina</span>
@@ -177,7 +177,7 @@
                   <p class="small text-muted mb-3">Ryzen 5 7530U | 8GB RAM | 512GB SSD</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <strong>$449.990</strong>
-                    <button class="btn btn-outline-primary btn-sm btn-agregar">Añadir al carrito</button>
+                    <button class="btn btn-outline-primary btn-sm btn-agregar" onclick="agregarAlCarrito('HP Pavilion 15', 449990, '../../resources/hp.png')">Añadir al carrito</button>
                   </div>
                 </div>
               </div>
@@ -187,7 +187,7 @@
             <article class="col">
               <div class="card h-100">
                 <div class="ratio ratio-4x3 bg-light">
-                  <img src="img/acer.jpeg" class="card-img-top object-fit-cover" alt="Acer Aspire 5">
+                  <img src="../../resources/acer.jpg" class="card-img-top object-fit-cover" alt="Acer Aspire 5">
                 </div>
                 <div class="card-body">
                   <span class="badge bg-secondary mb-2">Oficina</span>
@@ -195,7 +195,7 @@
                   <p class="small text-muted mb-3">i5-1235U | 8GB RAM | 256GB SSD</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <strong>$379.990</strong>
-                    <button class="btn btn-outline-primary btn-sm btn-agregar">Añadir al carrito</button>
+                    <button class="btn btn-outline-primary btn-sm btn-agregar" onclick="agregarAlCarrito('Acer Aspire 5', 379990, '../../resources/acer.jpg')">Añadir al carrito</button>
                   </div>
                 </div>
               </div>
@@ -210,11 +210,8 @@
       © 2026 Think-Tech. Todos los derechos reservados.
     </footer>
 
-    <!--Conexion con js-->
+    <!-- Conexion con js -->
     <script src="../../js/scripts.js"></script>
-    
-</body>
-</html>
     
 </body>
 </html>

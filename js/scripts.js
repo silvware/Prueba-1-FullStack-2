@@ -49,16 +49,16 @@ function actualizarContador() {
     }
 }
 
-// 4. FUNCIÓN PARA DIBUJAR LOS PRODUCTOS EN LA PÁGINA "CARRITO.HTML"
 function renderizarCarrito() {
     let cajaLista = document.getElementById('lista-carrito');
     let textoTotal = document.getElementById('total-carrito');
     
+    // Si la caja no existe, salimos
     if (cajaLista == null) {
         return; 
     }
 
-    cajaLista.innerHTML = ''; // Limpieza de caja
+    cajaLista.innerHTML = ''; 
     let sumaTotalPlata = 0;
 
     if (carrito.length === 0) {
@@ -71,21 +71,20 @@ function renderizarCarrito() {
         let item = carrito[i];
         let totalPorProducto = item.precio * item.cantidad;
         
-        sumaTotalPlata = sumaTotalPlata + totalPorProducto; // Vamos sumando la plata
+        sumaTotalPlata = sumaTotalPlata + totalPorProducto; 
         
-        // Aqui se meten cosas de pc.html a carrito.html
         cajaLista.innerHTML += `
             <article class="card mb-3 shadow-sm">
                 <div class="row g-0 align-items-center">
                     <div class="col-3 text-center p-2">
-                        <img src="${item.imagen}" width="80" alt="${item.nombre}">
+                        <img src="${item.imagen}" class="img-fluid rounded" width="80" alt="${item.nombre}">
                     </div>
                     <div class="col-6">
                         <h5>${item.nombre}</h5>
                         <p class="text-muted">Cantidad: ${item.cantidad}</p>
                     </div>
                     <div class="col-3 text-center">
-                        <strong class="text-primary">$${totalPorProducto}</strong> <br>
+                        <strong class="text-primary">$${totalPorProducto.toLocaleString('es-CL')}</strong> <br>
                         <button class="btn btn-sm btn-danger mt-2" onclick="eliminarDelCarrito(${i})">Borrar</button>
                     </div>
                 </div>
@@ -93,8 +92,8 @@ function renderizarCarrito() {
         `;
     }
 
-    // Actualizar texto por la suma total
-    textoTotal.innerHTML = "$" + sumaTotalPlata;
+    //formato con . correspondiente (para que se vea 1.000 y no 1000)
+    textoTotal.innerHTML = "$" + sumaTotalPlata.toLocaleString('es-CL');
 }
 
 function eliminarDelCarrito(posicion) {
