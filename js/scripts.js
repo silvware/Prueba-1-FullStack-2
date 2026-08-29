@@ -7,7 +7,6 @@ if (carritoGuardado != null) {
 }
 
 function agregarAlCarrito(nombreProducto, precioProducto, imagenProducto) {
-    
     let productoYaExiste = false;
 
     for (let i = 0; i < carrito.length; i++) {
@@ -105,10 +104,6 @@ function eliminarDelCarrito(posicion) {
     actualizarContador();
 }
 
-// ESTAS DOS LÍNEAS SE EJECUTAN SOLAS APENAS CARGA LA PÁGINA
-actualizarContador();
-renderizarCarrito();
-
 //mostrar/ocultar contraseña
 function mostrarOcultarPass(idDelInput, boton) {
     let input = document.getElementById(idDelInput);
@@ -124,45 +119,55 @@ function mostrarOcultarPass(idDelInput, boton) {
     }
 }
 
-let formRegistro = document.getElementById('formulario-registro');
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // 1. Cargamos el carrito apenas la página esté lista
+    actualizarContador();
+    renderizarCarrito();
 
-if (formRegistro) {
-    formRegistro.addEventListener('submit', function(evento) {
-        // 1. Evitar que la página se recargue cuando presionas el boton
-        evento.preventDefault(); 
+    // 2. Rastreador del formulario de REGISTRO
+    let formRegistro = document.getElementById('formulario-registro');
+    console.log("¿El JS encontró el formulario de REGISTRO ahora?:", formRegistro); 
 
-        // Guardar registro
-        let nombre = document.getElementById('nombreRegistro').value;
-        let correo = document.getElementById('emailRegistro').value;
-        let pass1 = document.getElementById('pass1Registro').value;
-        let pass2 = document.getElementById('pass2Registro').value;
+    if (formRegistro) {
+        formRegistro.addEventListener('submit', function(evento) {
+            evento.preventDefault(); 
 
-        // 3. ¡LA PRUEBA DE LA CONSOLA! (Lo que tú preguntabas)
-        console.log("--- INTENTO DE REGISTRO ---");
-        console.log("Nombre capturado:", nombre);
-        console.log("Correo capturado:", correo);
-        
-        // 4. Validación rápida de ejemplo
-        if (pass1 !== pass2) {
-            console.error("Error: Las contraseñas no son iguales.");
-            alert("Las contraseñas no coinciden. Intenta de nuevo.");
-            return; // Corta la función aquí, no avanza
-        }
+            let nombre = document.getElementById('nombreRegistro').value;
+            let correo = document.getElementById('emailRegistro').value;
+            let pass1 = document.getElementById('pass1Registro').value;
+            let pass2 = document.getElementById('pass2Registro').value;
 
-        // 5. Si todo está bien, lo guardamos en LocalStorage simulando una Base de Datos
-        let nuevoUsuario = {
-            nombre: nombre,
-            email: correo,
-            password: pass1,
-            rol: 'cliente' //Rol por defecto creado
-        };
+            console.log("--- INTENTO DE REGISTRO ---");
+            console.log("Nombre:", nombre);
+            console.log("Correo:", correo);
 
-        localStorage.setItem('usuarioActivo', JSON.stringify(nuevoUsuario));
-        
-        console.log("¡Éxito! Usuario guardado en LocalStorage:", nuevoUsuario);
-        alert("¡Registro exitoso! Bienvenido " + nombre);
-        
-        // 6. Redirigir a la tienda
-        window.location.href = "pc.html"; 
-    });
-}
+            if (pass1 !== pass2) {
+                alert("Error: Las contraseñas no coinciden.");
+                return;
+            }
+
+            alert("¡Registro capturado con éxito! Bienvenido " + nombre);
+        });
+    }
+
+    // 3. Rastreador del formulario de LOGIN
+    let formLogin = document.getElementById('formulario-login');
+    console.log("¿El JS encontró el formulario de LOGIN ahora?:", formLogin); 
+
+    if (formLogin) {
+        formLogin.addEventListener('submit', function(evento) {
+            evento.preventDefault(); // Detiene la recarga de la página
+
+            let correo = document.getElementById('emailLogin').value;
+            let pass = document.getElementById('passLogin').value;
+
+            console.log("--- INTENTO DE INICIO DE SESIÓN ---");
+            console.log("Correo ingresado:", correo);
+            console.log("Contraseña ingresada:", pass);
+
+            alert("¡Login capturado con éxito! Bienvenido " + correo);
+        });
+    }
+
+});
