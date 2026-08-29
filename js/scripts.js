@@ -108,3 +108,18 @@ function eliminarDelCarrito(posicion) {
 // ESTAS DOS LÍNEAS SE EJECUTAN SOLAS APENAS CARGA LA PÁGINA
 actualizarContador();
 renderizarCarrito();
+
+//mostrar/ocultar contraseña
+function mostrarOcultarPass(idDelInput, boton) {
+    let input = document.getElementById(idDelInput);
+    
+    // Si el input está oculto (password), lo cambiamos a texto visible
+    if (input.type === "password") {
+        input.type = "text";
+        boton.innerText = "🙈"; 
+    } else {
+        // Si ya está visible, lo volvemos a ocultar
+        input.type = "password";
+        boton.innerText = "👁️"; 
+    }
+}
