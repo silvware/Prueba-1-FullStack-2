@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,6 @@
 </head>
 <body class="bg-light">
     
-    <!-- NAVBAR COMPLETO Y ACTUALIZADO -->
     <nav class="navbar navbar-expand-lg bg-white border-bottom shadow-sm">
       <div class="container-fluid">
         <a class="navbar-brand" href="index.html">
@@ -21,7 +20,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           
-          <!-- Enlaces de navegación principales (Izquierda) -->
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
               <a class="nav-link" href="index.html">Inicio</a>
@@ -40,7 +38,6 @@
             </li>
           </ul>
           
-          <!-- Enlaces de usuario y carrito (Derecha) -->
           <ul class="navbar-nav ms-auto align-items-center">
             <li class="nav-item me-2">
               <a class="nav-link text-primary fw-bold" href="login.html">👤 Ingresar</a>
@@ -56,9 +53,8 @@
       </div>
     </nav>
 
-    <!-- INICIO DEL CONTENIDO PRINCIPAL -->
+    <!-- Carrusel-->
     <main>
-        <!-- CARRUSEL -->
         <div class="container mb-5 mt-4">
           <div id="carruselPC" class="carousel slide border rounded" data-bs-ride="carousel">
             <div class="carousel-indicators">
@@ -116,13 +112,23 @@
                 <div class="ratio ratio-4x3 bg-light">
                   <img src="../../resources/ThinkpadT14.jpg" class="card-img-top object-fit-cover" alt="Lenovo ThinkPad T14">
                 </div>
-                <div class="card-body">
-                  <span class="badge bg-secondary mb-2">Oficina</span>
-                  <h5 class="card-title">Lenovo ThinkPad T14 Gen 4</h5>
-                  <p class="small text-muted mb-3">i5-1335U | 16GB RAM | 512GB SSD</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <strong>$649.990</strong>
-                    <button class="btn btn-outline-primary btn-sm btn-agregar" onclick="agregarAlCarrito('Lenovo ThinkPad T14 Gen 4', 649990, '../../resources/ThinkpadT14.jpg')">Añadir al carrito</button>
+                <div class="card-body d-flex flex-column justify-content-between">
+                  <div>
+                    <span class="badge bg-secondary mb-2">Oficina</span>
+                    <h5 class="card-title">Lenovo ThinkPad T14 Gen 4</h5>
+                    <p class="small text-muted mb-3">i5-1335U | 16GB RAM | 512GB SSD</p>
+                  </div>
+                  <div>
+                    <p class="fw-bold fs-5 text-primary mb-2">$649.990</p>
+                    <div class="d-grid gap-2">
+                      <button class="btn btn-outline-secondary btn-sm" onclick="verDetalle(
+                      'Lenovo ThinkPad T14 Gen 4',
+                       649990, '../../resources/ThinkpadT14.jpg',
+                        'El ThinkPad T14 Gen 4 está diseñado para profesionales exigentes. Combina potencia con un chasis resistente de grado militar.', [
+                        'Procesador: Intel Core i5-1335U (13ª Gen)', 'Memoria RAM: 16 GB DDR5', 'Almacenamiento: 512 GB SSD NVMe M.2',
+                         'Pantalla: 14 pulgadas WUXGA IPS'])">Ver detalles</button>
+                      <button class="btn btn-outline-primary btn-sm btn-agregar" onclick="agregarAlCarrito('Lenovo ThinkPad T14 Gen 4', 649990, '../../resources/ThinkpadT14.jpg')">Añadir al carrito</button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -134,13 +140,22 @@
                 <div class="ratio ratio-4x3 bg-light">
                   <img src="../../resources/macbookm3.jpg" class="card-img-top object-fit-cover" alt="MacBook Air M3">
                 </div>
-                <div class="card-body">
-                  <span class="badge bg-secondary mb-2">Ultrabook</span>
-                  <h5 class="card-title">MacBook Air 13 M3</h5>
-                  <p class="small text-muted mb-3">M3 8-core | 8GB RAM | 256GB SSD</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <strong>$999.990</strong>
-                    <button class="btn btn-outline-primary btn-sm btn-agregar" onclick="agregarAlCarrito('MacBook Air 13 M3', 999990, '../../resources/macbookm3.jpg')">Añadir al carrito</button>
+                <div class="card-body d-flex flex-column justify-content-between">
+                  <div>
+                    <span class="badge bg-secondary mb-2">Ultrabook</span>
+                    <h5 class="card-title">MacBook Air 13 M3</h5>
+                    <p class="small text-muted mb-3">M3 8-core | 8GB RAM | 256GB SSD</p>
+                  </div>
+                  <div>
+                    <p class="fw-bold fs-5 text-primary mb-2">$999.990</p>
+                    <div class="d-grid gap-2">
+                      <button class="btn btn-outline-secondary btn-sm" onclick="verDetalle(
+                      'MacBook Air 13 M3', 999990, '../../resources/macbookm3.jpg',
+                       'El ultrabook más popular de Apple, ahora impulsado por el potente y eficiente chip M3.', [
+                       'Procesador: Chip M3 de Apple (CPU de 8 núcleos)', 'Memoria Unificada: 8 GB', 'Almacenamiento: 256 GB SSD',
+                        'Pantalla: 13.6 pulgadas Liquid Retina'])">Ver detalles</button>
+                      <button class="btn btn-outline-primary btn-sm btn-agregar" onclick="agregarAlCarrito('MacBook Air 13 M3', 999990, '../../resources/macbookm3.jpg')">Añadir al carrito</button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -152,13 +167,21 @@
                 <div class="ratio ratio-4x3 bg-light">
                   <img src="../../resources/dell.jpg" class="card-img-top object-fit-cover" alt="Dell XPS 13">
                 </div>
-                <div class="card-body">
-                  <span class="badge bg-secondary mb-2">Ultrabook</span>
-                  <h5 class="card-title">Dell XPS 13</h5>
-                  <p class="small text-muted mb-3">i7-1355U | 16GB RAM | 512GB SSD</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <strong>$1.099.990</strong>
-                    <button class="btn btn-outline-primary btn-sm btn-agregar" onclick="agregarAlCarrito('Dell XPS 13', 1099990, '../../resources/dell.jpg')">Añadir al carrito</button>
+                <div class="card-body d-flex flex-column justify-content-between">
+                  <div>
+                    <span class="badge bg-secondary mb-2">Ultrabook</span>
+                    <h5 class="card-title">Dell XPS 13</h5>
+                    <p class="small text-muted mb-3">i7-1355U | 16GB RAM | 512GB SSD</p>
+                  </div>
+                  <div>
+                    <p class="fw-bold fs-5 text-primary mb-2">$1.099.990</p>
+                    <div class="d-grid gap-2">
+                      <button class="btn btn-outline-secondary btn-sm" onclick="verDetalle(
+                      'Dell XPS 13', 1099990, '../../resources/dell.jpg', 'Diseño premium y ultraligero con una impresionante pantalla InfinityEdge prácticamente sin bordes.', [
+                      'Procesador: Intel Core i7-1355U (13ª Gen)', 'Memoria RAM: 16 GB LPDDR5', 'Almacenamiento: 512 GB PCIe NVMe',
+                       'Pantalla: 13.4 pulgadas FHD+ (1920 x 1200)'])">Ver detalles</button>
+                      <button class="btn btn-outline-primary btn-sm btn-agregar" onclick="agregarAlCarrito('Dell XPS 13', 1099990, '../../resources/dell.jpg')">Añadir al carrito</button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -170,13 +193,22 @@
                 <div class="ratio ratio-4x3 bg-light">
                   <img src="../../resources/asus.png" class="card-img-top object-fit-cover" alt="ASUS ROG Strix G16">
                 </div>
-                <div class="card-body">
-                  <span class="badge bg-secondary mb-2">Gaming</span>
-                  <h5 class="card-title">ASUS ROG Strix G16</h5>
-                  <p class="small text-muted mb-3">i7-13650HX | 16GB RAM | RTX 4060</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <strong>$1.299.990</strong>
-                    <button class="btn btn-outline-primary btn-sm btn-agregar" onclick="agregarAlCarrito('ASUS ROG Strix G16', 1299990, '../../resources/asus.png')">Añadir al carrito</button>
+                <div class="card-body d-flex flex-column justify-content-between">
+                  <div>
+                    <span class="badge bg-secondary mb-2">Gaming</span>
+                    <h5 class="card-title">ASUS ROG Strix G16</h5>
+                    <p class="small text-muted mb-3">i7-13650HX | 16GB RAM | RTX 4060</p>
+                  </div>
+                  <div>
+                    <p class="fw-bold fs-5 text-primary mb-2">$1.299.990</p>
+                    <div class="d-grid gap-2">
+                      <button class="btn btn-outline-secondary btn-sm" onclick="verDetalle(
+                      'ASUS ROG Strix G16', 1299990, '../../resources/asus.png',
+                       'Máxima potencia para gaming competitivo y creadores de contenido, con refrigeración de metal líquido.', [
+                       'Procesador: Intel Core i7-13650HX', 'Memoria RAM: 16 GB DDR5 4800MHz', 'Tarjeta de Video: NVIDIA GeForce RTX 4060',
+                        'Pantalla: 16 pulgadas QHD+ 165Hz'])">Ver detalles</button>
+                      <button class="btn btn-outline-primary btn-sm btn-agregar" onclick="agregarAlCarrito('ASUS ROG Strix G16', 1299990, '../../resources/asus.png')">Añadir al carrito</button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -188,13 +220,21 @@
                 <div class="ratio ratio-4x3 bg-light">
                   <img src="../../resources/hp.png" class="card-img-top object-fit-cover" alt="HP Pavilion 15">
                 </div>
-                <div class="card-body">
-                  <span class="badge bg-secondary mb-2">Oficina</span>
-                  <h5 class="card-title">HP Pavilion 15</h5>
-                  <p class="small text-muted mb-3">Ryzen 5 7530U | 8GB RAM | 512GB SSD</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <strong>$449.990</strong>
-                    <button class="btn btn-outline-primary btn-sm btn-agregar" onclick="agregarAlCarrito('HP Pavilion 15', 449990, '../../resources/hp.png')">Añadir al carrito</button>
+                <div class="card-body d-flex flex-column justify-content-between">
+                  <div>
+                    <span class="badge bg-secondary mb-2">Oficina</span>
+                    <h5 class="card-title">HP Pavilion 15</h5>
+                    <p class="small text-muted mb-3">Ryzen 5 7530U | 8GB RAM | 512GB SSD</p>
+                  </div>
+                  <div>
+                    <p class="fw-bold fs-5 text-primary mb-2">$449.990</p>
+                    <div class="d-grid gap-2">
+                      <button class="btn btn-outline-secondary btn-sm" onclick="verDetalle(
+                      'HP Pavilion 15', 449990, '../../resources/hp.png', 'Un equipo versátil y confiable que te acompaña en tus clases virtuales y labores de oficina diarias.', [
+                      'Procesador: AMD Ryzen 5 7530U', 'Memoria RAM: 8 GB DDR4', 'Almacenamiento: 512 GB SSD PCIe NVMe',
+                       'Batería: Carga rápida HP (50% en 45 mins)'])">Ver detalles</button>
+                      <button class="btn btn-outline-primary btn-sm btn-agregar" onclick="agregarAlCarrito('HP Pavilion 15', 449990, '../../resources/hp.png')">Añadir al carrito</button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -206,13 +246,21 @@
                 <div class="ratio ratio-4x3 bg-light">
                   <img src="../../resources/acer.jpg" class="card-img-top object-fit-cover" alt="Acer Aspire 5">
                 </div>
-                <div class="card-body">
-                  <span class="badge bg-secondary mb-2">Oficina</span>
-                  <h5 class="card-title">Acer Aspire 5</h5>
-                  <p class="small text-muted mb-3">i5-1235U | 8GB RAM | 256GB SSD</p>
-                  <div class="d-flex justify-content-between align-items-center">
-                    <strong>$379.990</strong>
-                    <button class="btn btn-outline-primary btn-sm btn-agregar" onclick="agregarAlCarrito('Acer Aspire 5', 379990, '../../resources/acer.jpg')">Añadir al carrito</button>
+                <div class="card-body d-flex flex-column justify-content-between">
+                  <div>
+                    <span class="badge bg-secondary mb-2">Oficina</span>
+                    <h5 class="card-title">Acer Aspire 5</h5>
+                    <p class="small text-muted mb-3">i5-1235U | 8GB RAM | 256GB SSD</p>
+                  </div>
+                  <div>
+                    <p class="fw-bold fs-5 text-primary mb-2">$379.990</p>
+                    <div class="d-grid gap-2">
+                      <button class="btn btn-outline-secondary btn-sm" onclick="verDetalle(
+                      'Acer Aspire 5', 379990, '../../resources/acer.jpg', 'Excelente relación calidad-precio. Ideal para tareas domésticas, navegación fluida y ofimática básica.', [
+                      'Procesador: Intel Core i5-1235U (12ª Gen)', 'Memoria RAM: 8 GB DDR4', 'Almacenamiento: 256 GB SSD',
+                       'Pantalla: 15.6 pulgadas Full HD ComfyView'])">Ver detalles</button>
+                      <button class="btn btn-outline-primary btn-sm btn-agregar" onclick="agregarAlCarrito('Acer Aspire 5', 379990, '../../resources/acer.jpg')">Añadir al carrito</button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -221,6 +269,37 @@
           </section>
         </div>
     </main>
+
+    <!--Detalles con dialog(ventana emergente)-->
+    <div class="modal fade" id="modalDetalleProducto" tabindex="-1" aria-hidden="true"> <!--sombreado-->
+        <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable"> <!--ventana centrada con scrol-->
+            <div class="modal-content"> <!--papel blanco-->
+                <div class="modal-header">
+                  <!--de aqui hace referencia a lo que esta ya puesto(asi evito copiar y pegar)-->
+                    <h5 class="modal-title fw-bold" id="modalTitulo"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row align-items-center">
+                        <div class="col-md-5 text-center mb-3 mb-md-0">
+                            <img id="modalImagen" src="" class="img-fluid rounded shadow-sm" alt="Producto">
+                        </div>
+                        <div class="col-md-7">
+                            <h3 class="text-primary fw-bold mb-3" id="modalPrecio"></h3>
+                            <p id="modalDescripcion" class="text-muted"></p>
+                            <h6><strong>Especificaciones principales:</strong></h6>
+                            <ul id="modalEspecificaciones" class="small"></ul>
+                        </div>
+                    </div>
+                </div>
+                <!--Botones-->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" id="btnModalAgregar" class="btn btn-primary">Añadir al carrito</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- FOOTER -->
     <footer class="border-top py-4 text-center text-muted small mt-5 bg-white">

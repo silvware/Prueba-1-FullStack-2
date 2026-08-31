@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 2. Rastreador del formulario de REGISTRO
     let formRegistro = document.getElementById('formulario-registro');
-    console.log("¿El JS encontró el formulario de REGISTRO ahora?:", formRegistro); 
+    console.log("texto", formRegistro); 
 
     if (formRegistro) {
         formRegistro.addEventListener('submit', function(evento) {
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 3. Rastreador del formulario de LOGIN
     let formLogin = document.getElementById('formulario-login');
-    console.log("¿El JS encontró el formulario de LOGIN ahora?:", formLogin); 
+    console.log("texto:", formLogin); 
 
     if (formLogin) {
         formLogin.addEventListener('submit', function(evento) {
@@ -171,3 +171,35 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 });
+
+//conexion con (detalles de procutos) al presionar ver detalles se lanzan estos 5 datoss
+function verDetalle(nombre, precio, imagen, descripcion, especificaciones) {
+    //relleno
+    document.getElementById('modalTitulo').innerText = nombre;
+    document.getElementById('modalPrecio').innerText = '$' + precio.toLocaleString('es-CL');
+    document.getElementById('modalImagen').src = imagen;
+    document.getElementById('modalDescripcion').innerText = descripcion;
+
+    //limpio la lista con innerHTML = '' para no mezclar datos viejos.
+    //forEach para crear un <li> por cada característica nueva y se inserta en el HTML con appendChild.
+
+    const listaEspecs = document.getElementById('modalEspecificaciones');
+    listaEspecs.innerHTML = '';
+    especificaciones.forEach(spec => {
+        const li = document.createElement('li');
+        li.innerText = spec;
+        listaEspecs.appendChild(li);
+    });
+
+    //función anónima que hace dos cosas: primero, manda los datos del PC actual a la función del carrito
+    //y segundo, oculta el modal usando el comando hide() de Bootstrap.
+
+    document.getElementById('btnModalAgregar').onclick = function() {
+        agregarAlCarrito(nombre, precio, imagen);
+        bootstrap.Modal.getInstance(document.getElementById('modalDetalleProducto')).hide();
+    };
+
+    //molde listo, muestralo en pantalla con show
+    const modal = new bootstrap.Modal(document.getElementById('modalDetalleProducto'));
+    modal.show();
+}
