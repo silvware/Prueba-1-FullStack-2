@@ -120,56 +120,10 @@ function mostrarOcultarPass(idDelInput, boton) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    
     // 1. Cargamos el carrito apenas la página esté lista
     actualizarContador();
     renderizarCarrito();
-
-    // 2. Rastreador del formulario de REGISTRO
-    let formRegistro = document.getElementById('formulario-registro');
-    console.log("texto", formRegistro); 
-
-    if (formRegistro) {
-        formRegistro.addEventListener('submit', function(evento) {
-            evento.preventDefault(); 
-
-            let nombre = document.getElementById('nombreRegistro').value;
-            let correo = document.getElementById('emailRegistro').value;
-            let pass1 = document.getElementById('pass1Registro').value;
-            let pass2 = document.getElementById('pass2Registro').value;
-
-            console.log("--- INTENTO DE REGISTRO ---");
-            console.log("Nombre:", nombre);
-            console.log("Correo:", correo);
-
-            if (pass1 !== pass2) {
-                alert("Error: Las contraseñas no coinciden.");
-                return;
-            }
-
-            alert("¡Registro capturado con éxito! Bienvenido " + nombre);
-        });
-    }
-
-    // 3. Rastreador del formulario de LOGIN
-    let formLogin = document.getElementById('formulario-login');
-    console.log("texto:", formLogin); 
-
-    if (formLogin) {
-        formLogin.addEventListener('submit', function(evento) {
-            evento.preventDefault(); // Detiene la recarga de la página
-
-            let correo = document.getElementById('emailLogin').value;
-            let pass = document.getElementById('passLogin').value;
-
-            console.log("--- INTENTO DE INICIO DE SESIÓN ---");
-            console.log("Correo ingresado:", correo);
-            console.log("Contraseña ingresada:", pass);
-
-            alert("¡Login capturado con éxito! Bienvenido " + correo);
-        });
-    }
-
+    // NOTA: Se borraron los rastreadores viejos de formulario que causaban error
 });
 
 //conexion con (detalles de procutos) al presionar ver detalles se lanzan estos 5 datoss
@@ -180,9 +134,6 @@ function verDetalle(nombre, precio, imagen, descripcion, especificaciones) {
     document.getElementById('modalImagen').src = imagen;
     document.getElementById('modalDescripcion').innerText = descripcion;
 
-    //limpio la lista con innerHTML = '' para no mezclar datos viejos.
-    //forEach para crear un <li> por cada característica nueva y se inserta en el HTML con appendChild.
-
     const listaEspecs = document.getElementById('modalEspecificaciones');
     listaEspecs.innerHTML = '';
     especificaciones.forEach(spec => {
@@ -191,15 +142,78 @@ function verDetalle(nombre, precio, imagen, descripcion, especificaciones) {
         listaEspecs.appendChild(li);
     });
 
-    //función anónima que hace dos cosas: primero, manda los datos del PC actual a la función del carrito
-    //y segundo, oculta el modal usando el comando hide() de Bootstrap.
-
     document.getElementById('btnModalAgregar').onclick = function() {
         agregarAlCarrito(nombre, precio, imagen);
         bootstrap.Modal.getInstance(document.getElementById('modalDetalleProducto')).hide();
     };
 
-    //molde listo, muestralo en pantalla con show
     const modal = new bootstrap.Modal(document.getElementById('modalDetalleProducto'));
     modal.show();
+}
+
+// ==========================================
+// LÓGICA DE USUARIOS (LOGIN Y REGISTRO)
+// ==========================================
+
+// Función para el formulario de REGISTRO
+function registrarUsuario(event) {
+    event.preventDefault(); // Evita que la página se recargue al enviar el formulario
+
+    // Se capturan datos del nuevo diseño
+    const nombre = document.getElementById('nombreRegistro').value;
+    const email = document.getElementById('emailRegistro').value;
+    const pass1 = document.getElementById('pass1Registro').value;
+    const pass2 = document.getElementById('pass2Registro').value;
+
+    // 1. Validar contraseñas
+    if (pass1 !== pass2) {
+        alert("¡Error! Las contraseñas no coinciden. Por favor, revísalas.");
+        return; 
+    }
+
+    // Trae user guardado o se crea lista nueva
+    const usuarios = JSON.parse(localStorage.getItem('listaUsuarios')) || [];
+
+    // Evitamos que el ingreso sea con el mismo correo(duplicado)
+    const usuarioExiste = usuarios.find(user => user.email === email);
+    if (usuarioExiste) {
+        alert("¡Error! Este correo ya se encuentra registrado.");
+        return; 
+    }
+
+    // Si no existe se agrega y se guarda
+    usuarios.push({ nombre: nombre, email: email, password: pass1 });
+    localStorage.setItem('listaUsuarios', JSON.stringify(usuarios));
+
+    alert("¡Registro exitoso " + nombre + "! Ahora puedes iniciar sesión.");
+    window.location.href = 'login.html'; // Al registrase se redirige al login
+}
+
+// Función para el formulario de LOGIN
+function iniciarSesion(event) {
+    event.preventDefault(); 
+
+    const email = document.getElementById('emailLogin').value;
+    const password = document.getElementById('passLogin').value;
+
+    // Traemos la lista de usuarios registrados desde la memoria
+    const usuarios = JSON.parse(localStorage.getItem('listaUsuarios')) || [];
+
+    // Buscamos si hay algún usuario con ese correo
+    const usuarioEncontrado = usuarios.find(user => user.email === email);
+
+    // Si NO se encuentra el correo:
+    if (!usuarioEncontrado) {
+        alert("Usuario no registrado o no encontrado.");
+        return; 
+    }
+
+    // Si el correo SÍ existe, pero la contraseña está mal:
+    if (usuarioEncontrado.password !== password) {
+        alert("Contraseña incorrecta. Inténtalo de nuevo.");
+        return;
+    }
+
+    alert("¡Sesión iniciada con éxito! Bienvenido(a).");
+    window.location.href = 'index.html'; // Lo enviamos a la página principal
 }
