@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +9,6 @@
 </head>
 <body class="bg-light">
 
-    <!-- NAVBAR COMPLETO Y ACTUALIZADO -->
     <nav class="navbar navbar-expand-lg bg-white border-bottom shadow-sm">
       <div class="container-fluid">
         <a class="navbar-brand" href="index.html">
@@ -19,17 +18,13 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          
-          <!-- Enlaces de navegación principales -->
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
             <li class="nav-item"><a class="nav-link" href="pc.html">Computadoras</a></li>
-            <li class="nav-item"><a class="nav-link active fw-bold" aria-current="page" href="accesorios.html">Accesorios</a></li>
+            <li class="nav-item"><a class="nav-link active fw-bold" href="accesorios.html">Accesorios</a></li>
             <li class="nav-item"><a class="nav-link" href="nosotros.html">Nosotros</a></li>
             <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
           </ul>
-          
-          <!-- Enlaces de usuario y carrito -->
           <ul class="navbar-nav ms-auto align-items-center">
             <li class="nav-item me-2"><a class="nav-link text-primary fw-bold" href="login.html">👤 Ingresar</a></li>
             <li class="nav-item me-3"><a class="nav-link text-success fw-bold" href="registro.html">📝 Registro</a></li>
@@ -39,17 +34,15 @@
       </div>
     </nav>
 
-    <!-- TÍTULO -->
     <header class="container text-center my-5">
         <h1 class="fw-bold">Accesorios Think-Tech</h1>
         <p class="text-muted">Teclados, mouse, audífonos, monitores y más.</p>
     </header>
 
-    <!-- PRODUCTOS -->
     <main class="container mb-5">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
-
-            <!-- Teclado Mecánico -->
+        <section class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
+            
+            <!-- PROD 7 -->
             <article class="col">
                 <div class="card h-100 border-0 shadow-sm">
                     <div class="ratio ratio-4x3 bg-white p-2">
@@ -58,26 +51,20 @@
                     <div class="card-body d-flex flex-column justify-content-between">
                         <div>
                             <h5 class="card-title">Teclado Mecánico RGB</h5>
-                            <p class="card-text small text-muted">Switches rojos y retroiluminación RGB.</p>
+                            <p class="small text-muted mb-3">Stock disponible: <span id="stock-prod-7">30</span> unids.</p>
                         </div>
-                        <div class="mt-3">
-                            <p class="fw-bold fs-5 text-primary mb-2">$34.990</p>
+                        <div>
+                            <p class="fw-bold fs-5 text-primary mb-2">$<span id="precio-prod-7">34.990</span></p>
                             <div class="d-grid gap-2">
-                                <button class="btn btn-outline-secondary btn-sm" onclick="verDetalle(
-                                    'Teclado Mecánico RGB', 
-                                    34990, 
-                                    '../../resources/tecla.webp', 
-                                    'Teclado mecánico compacto formato 60% ideal para gaming y escritura rápida.', 
-                                    ['Switches: Red Lineal', 'Conexión: Cable USB-C removible', 'Iluminación: RGB Personalizable', 'Teclas: Anti-Ghosting completas']
-                                )">Ver detalles</button>
-                                <button class="btn btn-outline-primary btn-sm btn-agregar" onclick="agregarAlCarrito('Teclado Mecánico RGB', 34990, '../../resources/tecla.webp')">Añadir al carrito</button>
+                                <button class="btn btn-outline-secondary btn-sm" onclick="verDetalle(7)">Ver detalles</button>
+                                <button class="btn btn-outline-primary btn-sm" onclick="agregarAlCarrito(7)">Añadir al carrito</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </article>
 
-            <!-- Mouse Gamer -->
+            <!-- PROD 8 -->
             <article class="col">
                 <div class="card h-100 border-0 shadow-sm">
                     <div class="ratio ratio-4x3 bg-white p-2">
@@ -86,26 +73,20 @@
                     <div class="card-body d-flex flex-column justify-content-between">
                         <div>
                             <h5 class="card-title">Mouse Gamer</h5>
-                            <p class="card-text small text-muted">16,000 DPI y batería de larga duración.</p>
+                            <p class="small text-muted mb-3">Stock disponible: <span id="stock-prod-8">25</span> unids.</p>
                         </div>
-                        <div class="mt-3">
-                            <p class="fw-bold fs-5 text-primary mb-2">$19.990</p>
+                        <div>
+                            <p class="fw-bold fs-5 text-primary mb-2">$<span id="precio-prod-8">19.990</span></p>
                             <div class="d-grid gap-2">
-                                <button class="btn btn-outline-secondary btn-sm" onclick="verDetalle(
-                                    'Mouse Gamer', 
-                                    19990, 
-                                    '../../resources/mous.webp', 
-                                    'Mouse ergonómico de alta precisión con sensor óptico avanzado.', 
-                                    ['Sensor: Óptico 16.000 DPI', 'Botones: 6 programables', 'Batería: Hasta 70 horas continuas', 'Peso: 85g ultraligero']
-                                )">Ver detalles</button>
-                                <button class="btn btn-outline-primary btn-sm btn-agregar" onclick="agregarAlCarrito('Mouse Gamer', 19990, '../../resources/mous.webp')">Añadir al carrito</button>
+                                <button class="btn btn-outline-secondary btn-sm" onclick="verDetalle(8)">Ver detalles</button>
+                                <button class="btn btn-outline-primary btn-sm" onclick="agregarAlCarrito(8)">Añadir al carrito</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </article>
 
-            <!-- Audífonos Gamer -->
+            <!-- PROD 9 -->
             <article class="col">
                 <div class="card h-100 border-0 shadow-sm">
                     <div class="ratio ratio-4x3 bg-white p-2">
@@ -114,26 +95,20 @@
                     <div class="card-body d-flex flex-column justify-content-between">
                         <div>
                             <h5 class="card-title">Audífonos Gamer 7.1</h5>
-                            <p class="card-text small text-muted">Sonido envolvente y micrófono incluido.</p>
+                            <p class="small text-muted mb-3">Stock disponible: <span id="stock-prod-9">18</span> unids.</p>
                         </div>
-                        <div class="mt-3">
-                            <p class="fw-bold fs-5 text-primary mb-2">$27.490</p>
+                        <div>
+                            <p class="fw-bold fs-5 text-primary mb-2">$<span id="precio-prod-9">27.490</span></p>
                             <div class="d-grid gap-2">
-                                <button class="btn btn-outline-secondary btn-sm" onclick="verDetalle(
-                                    'Audífonos Gamer 7.1', 
-                                    27490, 
-                                    '../../resources/audif.jpg', 
-                                    'Diadema ergonómica con cancelación pasiva de ruido y audio surround.', 
-                                    ['Sonido: Envolvente Virtual 7.1', 'Conector: USB y Jack 3.5mm', 'Micrófono: Omnidireccional con cancelación de ruido', 'Almohadillas: Viscoelásticas transpirables']
-                                )">Ver detalles</button>
-                                <button class="btn btn-outline-primary btn-sm btn-agregar" onclick="agregarAlCarrito('Audífonos Gamer 7.1', 27490, '../../resources/audif.jpg')">Añadir al carrito</button>
+                                <button class="btn btn-outline-secondary btn-sm" onclick="verDetalle(9)">Ver detalles</button>
+                                <button class="btn btn-outline-primary btn-sm" onclick="agregarAlCarrito(9)">Añadir al carrito</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </article>
 
-            <!-- Monitor IPS -->
+            <!-- PROD 10 -->
             <article class="col">
                 <div class="card h-100 border-0 shadow-sm">
                     <div class="ratio ratio-4x3 bg-white p-2">
@@ -141,27 +116,21 @@
                     </div>
                     <div class="card-body d-flex flex-column justify-content-between">
                         <div>
-                            <h5 class="card-title">Monitor 27" IPS</h5>
-                            <p class="card-text small text-muted">Full HD con 144Hz para gaming.</p>
+                            <h5 class="card-title">Monitor 27 IPS</h5>
+                            <p class="small text-muted mb-3">Stock disponible: <span id="stock-prod-10">10</span> unids.</p>
                         </div>
-                        <div class="mt-3">
-                            <p class="fw-bold fs-5 text-primary mb-2">$159.990</p>
+                        <div>
+                            <p class="fw-bold fs-5 text-primary mb-2">$<span id="precio-prod-10">159.990</span></p>
                             <div class="d-grid gap-2">
-                                <button class="btn btn-outline-secondary btn-sm" onclick="verDetalle(
-                                    'Monitor 27 IPS', 
-                                    159990, 
-                                    '../../resources/monitot.webp', 
-                                    'Pantalla para juegos fluida con colores vívidos y ángulo de visión de 178°.', 
-                                    ['Tasa de refresco: 144Hz', 'Tiempo de respuesta: 1ms MPRT', 'Resolución: Full HD (1920x1080)', 'Puertos: HDMI 2.0, DisplayPort 1.2']
-                                )">Ver detalles</button>
-                                <button class="btn btn-outline-primary btn-sm btn-agregar" onclick="agregarAlCarrito('Monitor 27 IPS', 159990, '../../resources/monitot.webp')">Añadir al carrito</button>
+                                <button class="btn btn-outline-secondary btn-sm" onclick="verDetalle(10)">Ver detalles</button>
+                                <button class="btn btn-outline-primary btn-sm" onclick="agregarAlCarrito(10)">Añadir al carrito</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </article>
 
-            <!-- HDMI -->
+            <!-- PROD 11 -->
             <article class="col">
                 <div class="card h-100 border-0 shadow-sm">
                     <div class="ratio ratio-4x3 bg-white p-2">
@@ -170,54 +139,42 @@
                     <div class="card-body d-flex flex-column justify-content-between">
                         <div>
                             <h5 class="card-title">HDMI</h5>
-                            <p class="card-text small text-muted">Cable HDMI de alta velocidad para conexión de dispositivos.</p>
+                            <p class="small text-muted mb-3">Stock disponible: <span id="stock-prod-11">50</span> unids.</p>
                         </div>
-                        <div class="mt-3">
-                            <p class="fw-bold fs-5 text-primary mb-2">$19.990</p>
+                        <div>
+                            <p class="fw-bold fs-5 text-primary mb-2">$<span id="precio-prod-11">19.990</span></p>
                             <div class="d-grid gap-2">
-                                <button class="btn btn-outline-secondary btn-sm" onclick="verDetalle(
-                                    'HDMI', 
-                                    19990, 
-                                    '../../resources/hdmi.webp', 
-                                    'Cable HDMI de alta velocidad para conexión de dispositivos.', 
-                                    ['Largo: 1.5m', 'Conexión: HDMI tipo A', 'Compatibilidad: Full HD 1080p', 'Material: PVC de alta calidad']
-                                )">Ver detalles</button>
-                                <button class="btn btn-outline-primary btn-sm btn-agregar" onclick="agregarAlCarrito('HDMI', 19990, '../../resources/hdmi.webp')">Añadir al carrito</button>
+                                <button class="btn btn-outline-secondary btn-sm" onclick="verDetalle(11)">Ver detalles</button>
+                                <button class="btn btn-outline-primary btn-sm" onclick="agregarAlCarrito(11)">Añadir al carrito</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </article>
 
-            <!-- Memoria USB -->
+            <!-- PROD 12 -->
             <article class="col">
                 <div class="card h-100 border-0 shadow-sm">
                     <div class="ratio ratio-4x3 bg-white p-2">
-                        <img src="../../resources/usb.webp" class="card-img-top object-fit-contain" alt="Memoria USB">
+                        <img src="../../resources/usb.webp" class="card-img-top object-fit-contain" alt="USB">
                     </div>
                     <div class="card-body d-flex flex-column justify-content-between">
                         <div>
                             <h5 class="card-title">Memoria USB</h5>
-                            <p class="card-text small text-muted">Alta velocidad de transferencia y diseño compacto.</p>
+                            <p class="small text-muted mb-3">Stock disponible: <span id="stock-prod-12">45</span> unids.</p>
                         </div>
-                        <div class="mt-3">
-                            <p class="fw-bold fs-5 text-primary mb-2">$34.500</p>
+                        <div>
+                            <p class="fw-bold fs-5 text-primary mb-2">$<span id="precio-prod-12">34.500</span></p>
                             <div class="d-grid gap-2">
-                                <button class="btn btn-outline-secondary btn-sm" onclick="verDetalle(
-                                    'Memoria USB', 
-                                    34500, 
-                                    '../../resources/usb.webp', 
-                                    'Alta velocidad de transferencia y diseño compacto.', 
-                                    ['Capacidad: 256GB', 'Velocidad de lectura: Hasta 100MB/s', 'Velocidad de escritura: Hasta 30MB/s', 'Compatibilidad: USB 3.0']
-                                )">Ver detalles</button>
-                                <button class="btn btn-outline-primary btn-sm btn-agregar" onclick="agregarAlCarrito('Memoria USB', 34500, '../../resources/memoria.webp')">Añadir al carrito</button>
+                                <button class="btn btn-outline-secondary btn-sm" onclick="verDetalle(12)">Ver detalles</button>
+                                <button class="btn btn-outline-primary btn-sm" onclick="agregarAlCarrito(12)">Añadir al carrito</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </article>
 
-            <!-- Microfono Gamer -->
+            <!-- PROD 13 -->
             <article class="col">
                 <div class="card h-100 border-0 shadow-sm">
                     <div class="ratio ratio-4x3 bg-white p-2">
@@ -226,34 +183,29 @@
                     <div class="card-body d-flex flex-column justify-content-between">
                         <div>
                             <h5 class="card-title">Microfono Gamer</h5>
-                            <p class="card-text small text-muted">Micrófono de alta calidad para gaming.</p>
+                            <p class="small text-muted mb-3">Stock disponible: <span id="stock-prod-13">14</span> unids.</p>
                         </div>
-                        <div class="mt-3">
-                            <p class="fw-bold fs-5 text-primary mb-2">$49.000</p>
+                        <div>
+                            <p class="fw-bold fs-5 text-primary mb-2">$<span id="precio-prod-13">49.000</span></p>
                             <div class="d-grid gap-2">
-                                <button class="btn btn-outline-secondary btn-sm" onclick="verDetalle(
-                                    'Microfono Gamer', 
-                                    49000, 
-                                    '../../resources/micro.avif', 
-                                    'Micrófono de alta calidad para gaming.', 
-                                    ['Conector: USB', 'Sensibilidad: -30dB', 'Directividad: Omnidireccional', 'Cancelación de ruido: Sí']
-                                )">Ver detalles</button>
-                                <button class="btn btn-outline-primary btn-sm btn-agregar" onclick="agregarAlCarrito('Microfono Gamer', 27490, '../../resources/micro.avif')">Añadir al carrito</button>
+                                <button class="btn btn-outline-secondary btn-sm" onclick="verDetalle(13)">Ver detalles</button>
+                                <button class="btn btn-outline-primary btn-sm" onclick="agregarAlCarrito(13)">Añadir al carrito</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </article>
-        </div>
+
+        </section>
     </main>
 
-    <!-- MODAL ÚNICO DE DETALLES -->
+    <!-- Modal Detalle -->
     <div class="modal fade" id="modalDetalleProducto" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title fw-bold" id="modalTitulo"></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row align-items-center">
@@ -263,7 +215,7 @@
                         <div class="col-md-7">
                             <h3 class="text-primary fw-bold mb-3" id="modalPrecio"></h3>
                             <p id="modalDescripcion" class="text-muted"></p>
-                            <h6><strong>Especificaciones principales:</strong></h6>
+                            <h6><strong>Especificaciones:</strong></h6>
                             <ul id="modalEspecificaciones" class="small"></ul>
                         </div>
                     </div>
@@ -276,14 +228,11 @@
         </div>
     </div>
 
-    <!-- FOOTER -->
     <footer class="border-top py-4 text-center text-muted small mt-5 bg-white">
-      © 2026 Think-Tech. Todos los derechos reservados.
+        © 2026 Think-Tech. Todos los derechos reservados.
     </footer>
 
-    <!-- CONEXIÓN JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../../js/scripts.js"></script>
-
 </body>
 </html>

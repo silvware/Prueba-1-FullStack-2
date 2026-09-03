@@ -1,61 +1,103 @@
-let carrito = []; //arreglo o lista vacia
-let carritoGuardado = localStorage.getItem('carritoTienda'); // Buscamos si hay algo guardado de antes
+//Catalogo
+let productosIniciales = [
+    { id: 1, nombre: "Lenovo ThinkPad T14 Gen 4", categoria: "Computadoras", precio: 649990, stock: 15, imagen: "../../resources/ThinkpadT14.jpg", descripcion: "El ThinkPad T14 Gen 4 está diseñado para profesionales exigentes.", especificaciones: ["Intel Core i5", "16 GB RAM", "512 GB SSD"] },
+    { id: 2, nombre: "MacBook Air 13 M3", categoria: "Computadoras", precio: 999990, stock: 8, imagen: "../../resources/macbookm3.jpg", descripcion: "El ultrabook más popular de Apple con chip M3.", especificaciones: ["Chip M3", "8 GB RAM", "256 GB SSD"] },
+    { id: 3, nombre: "Dell XPS 13", categoria: "Computadoras", precio: 1099990, stock: 5, imagen: "../../resources/dell.jpg", descripcion: "Diseño premium y ultraligero con pantalla InfinityEdge.", especificaciones: ["Intel Core i7", "16 GB RAM", "512 GB SSD"] },
+    { id: 4, nombre: "ASUS ROG Strix G16", categoria: "Computadoras", precio: 1299990, stock: 3, imagen: "../../resources/asus.png", descripcion: "Máxima potencia para gaming competitivo.", especificaciones: ["Intel Core i7", "RTX 4060", "16 GB RAM"] },
+    { id: 5, nombre: "HP Pavilion 15", categoria: "Computadoras", precio: 449990, stock: 12, imagen: "../../resources/hp.png", descripcion: "Un equipo versátil para clases virtuales y ofimática.", especificaciones: ["AMD Ryzen 5", "8 GB RAM", "512 GB SSD"] },
+    { id: 6, nombre: "Acer Aspire 5", categoria: "Computadoras", precio: 379990, stock: 20, imagen: "../../resources/acer.jpg", descripcion: "Excelente relación calidad-precio para tareas domésticas.", especificaciones: ["Intel Core i5", "8 GB RAM", "256 GB SSD"] },
+    { id: 7, nombre: "Teclado Mecánico RGB", categoria: "Accesorios", precio: 34990, stock: 30, imagen: "../../resources/tecla.webp", descripcion: "Teclado mecánico ideal para gaming.", especificaciones: ["Switches Red", "RGB Personalizable"] },
+    { id: 8, nombre: "Mouse Gamer", categoria: "Accesorios", precio: 19990, stock: 25, imagen: "../../resources/mous.webp", descripcion: "Mouse ergonómico de alta precisión.", especificaciones: ["16.000 DPI", "6 botones programables"] },
+    { id: 9, nombre: "Audífonos Gamer 7.1", categoria: "Accesorios", precio: 27490, stock: 18, imagen: "../../resources/audif.jpg", descripcion: "Diadema con audio surround.", especificaciones: ["Sonido 7.1", "Micrófono omnidireccional"] },
+    { id: 10, nombre: "Monitor 27 IPS", categoria: "Accesorios", precio: 159990, stock: 10, imagen: "../../resources/monitot.webp", descripcion: "Pantalla fluida con colores vívidos.", especificaciones: ["144Hz", "1ms respuesta"] },
+    { id: 11, nombre: "HDMI", categoria: "Accesorios", precio: 19990, stock: 50, imagen: "../../resources/hdmi.webp", descripcion: "Cable HDMI de alta velocidad.", especificaciones: ["Largo: 1.5m", "Full HD"] },
+    { id: 12, nombre: "Memoria USB", categoria: "Accesorios", precio: 34500, stock: 45, imagen: "../../resources/usb.webp", descripcion: "Alta velocidad de transferencia.", especificaciones: ["256GB", "USB 3.0"] },
+    { id: 13, nombre: "Microfono Gamer", categoria: "Accesorios", precio: 49000, stock: 14, imagen: "../../resources/micro.avif", descripcion: "Micrófono de alta calidad.", especificaciones: ["Conexión USB", "Cancelación de ruido"] }
+];
 
-// Si encontramos algo guardado, lo convertimos de texto a un arreglo de verdad
-if (carritoGuardado != null) {
-    carrito = JSON.parse(carritoGuardado);
+function obtenerProductos() {
+    let guardados = localStorage.getItem("admin_productos");
+    if (guardados != null) {
+        return JSON.parse(guardados); 
+    } else {
+        localStorage.setItem("admin_productos", JSON.stringify(productosIniciales));
+        return productosIniciales;
+    }
 }
 
-function agregarAlCarrito(nombreProducto, precioProducto, imagenProducto) {
+//Actualizar precio de vitrina
+function actualizarPreciosVitrina() {
+    let productos = obtenerProductos();
+    
+    for (let i = 0; i < productos.length; i++) {
+        let prod = productos[i];
+        
+        // Busca si el HTML tiene la etiqueta con el ID de este producto
+        let cajaPrecio = document.getElementById("precio-prod-" + prod.id);
+        let cajaStock = document.getElementById("stock-prod-" + prod.id);
+        
+        // Si la encuentra, le chantamos el dato actualizado de la memoria
+        if (cajaPrecio != null && cajaStock != null) {
+            cajaPrecio.innerText = prod.precio.toLocaleString('es-CL');
+            cajaStock.innerText = prod.stock;
+        }
+    }
+}
+
+//Carrito
+let carrito = JSON.parse(localStorage.getItem('carritoTienda')) || [];
+
+function agregarAlCarrito(idProducto) {
+    let productos = obtenerProductos();
+    
+    // Buscamos los datos completos del producto usando su ID
+    let productoEncontrado = productos.find(p => p.id === idProducto);
+
+    //Si el stock es 0 no puede agregarse
+    if (productoEncontrado.stock <= 0) {
+        alert("¡Lo sentimos! " + productoEncontrado.nombre + " se encuentra sin stock por el momento.");
+        return; // Cortamos la función para que no lo agregue
+    }
+
     let productoYaExiste = false;
 
+    // Revisamos si ya lo teníamos en el carrito
     for (let i = 0; i < carrito.length; i++) {
-        if (carrito[i].nombre === nombreProducto) {
-            carrito[i].cantidad = carrito[i].cantidad + 1; // Si existe, le sumamos 1
+        if (carrito[i].id === idProducto) {
+            carrito[i].cantidad += 1; 
             productoYaExiste = true;
         }
     }
 
-    // Si el ciclo terminó y el producto no existía, lo creamos desde cero
+    // Si es nuevo, lo guardamos con todos sus datos
     if (productoYaExiste === false) {
-        let nuevoProducto = {
-            nombre: nombreProducto,
-            precio: precioProducto,
-            imagen: imagenProducto,
+        carrito.push({
+            id: productoEncontrado.id,
+            nombre: productoEncontrado.nombre,
+            precio: productoEncontrado.precio,
+            imagen: productoEncontrado.imagen,
             cantidad: 1
-        };
-        carrito.push(nuevoProducto); 
+        }); 
     }
 
-    //guardado de locale storage
     localStorage.setItem('carritoTienda', JSON.stringify(carrito));
-    
     actualizarContador(); 
-    alert("Agregaste: " + nombreProducto);
+    alert("Agregaste: " + productoEncontrado.nombre);
 }
 
 function actualizarContador() {
     let totalArticulos = 0;
-
     for (let i = 0; i < carrito.length; i++) {
-        totalArticulos = totalArticulos + carrito[i].cantidad;
+        totalArticulos += carrito[i].cantidad;
     }
-
-    // Buscamos la etiqueta del HTML donde va el número y se lo cambiamos
     let textoContador = document.getElementById('contador-carrito');
-    if (textoContador != null) {
-        textoContador.innerHTML = totalArticulos;
-    }
+    if (textoContador != null) textoContador.innerHTML = totalArticulos;
 }
 
 function renderizarCarrito() {
     let cajaLista = document.getElementById('lista-carrito');
     let textoTotal = document.getElementById('total-carrito');
-    
-    // Si la caja no existe, salimos
-    if (cajaLista == null) {
-        return; 
-    }
+    if (cajaLista == null) return; 
 
     cajaLista.innerHTML = ''; 
     let sumaTotalPlata = 0;
@@ -69,81 +111,50 @@ function renderizarCarrito() {
     for (let i = 0; i < carrito.length; i++) {
         let item = carrito[i];
         let totalPorProducto = item.precio * item.cantidad;
-        
-        sumaTotalPlata = sumaTotalPlata + totalPorProducto; 
+        sumaTotalPlata += totalPorProducto; 
         
         cajaLista.innerHTML += `
             <article class="card mb-3 shadow-sm">
                 <div class="row g-0 align-items-center">
-                    <div class="col-3 text-center p-2">
-                        <img src="${item.imagen}" class="img-fluid rounded" width="80" alt="${item.nombre}">
-                    </div>
-                    <div class="col-6">
-                        <h5>${item.nombre}</h5>
-                        <p class="text-muted">Cantidad: ${item.cantidad}</p>
-                    </div>
+                    <div class="col-3 text-center p-2"><img src="${item.imagen}" class="img-fluid rounded" width="80"></div>
+                    <div class="col-6"><h5>${item.nombre}</h5><p class="text-muted">Cantidad: ${item.cantidad}</p></div>
                     <div class="col-3 text-center">
-                        <strong class="text-primary">$${totalPorProducto.toLocaleString('es-CL')}</strong> <br>
+                        <strong class="text-primary">$${totalPorProducto.toLocaleString('es-CL')}</strong><br>
                         <button class="btn btn-sm btn-danger mt-2" onclick="eliminarDelCarrito(${i})">Borrar</button>
                     </div>
                 </div>
-            </article>
-        `;
+            </article>`;
     }
-
-    //formato con . correspondiente (para que se vea 1.000 y no 1000)
     textoTotal.innerHTML = "$" + sumaTotalPlata.toLocaleString('es-CL');
 }
 
 function eliminarDelCarrito(posicion) {
     carrito.splice(posicion, 1); 
-    localStorage.setItem('carritoTienda', JSON.stringify(carrito)); // Guarda los cambios
-    
-    // Volvemos a dibujar todo actualizado
+    localStorage.setItem('carritoTienda', JSON.stringify(carrito)); 
     renderizarCarrito();
     actualizarContador();
 }
 
-//mostrar/ocultar contraseña
-function mostrarOcultarPass(idDelInput, boton) {
-    let input = document.getElementById(idDelInput);
-    
-    // Si el input está oculto (password), lo cambiamos a texto visible
-    if (input.type === "password") {
-        input.type = "text";
-        boton.innerText = "🙈"; 
-    } else {
-        // Si ya está visible, lo volvemos a ocultar
-        input.type = "password";
-        boton.innerText = "👁️"; 
-    }
-}
+// Cargar los datos en la ventana emergente automáticamente
+function verDetalle(idProducto) {
+    let productos = obtenerProductos();
+    let prod = productos.find(p => p.id === idProducto);
 
-document.addEventListener('DOMContentLoaded', function() {
-    // 1. Cargamos el carrito apenas la página esté lista
-    actualizarContador();
-    renderizarCarrito();
-    // NOTA: Se borraron los rastreadores viejos de formulario que causaban error
-});
-
-//conexion con (detalles de procutos) al presionar ver detalles se lanzan estos 5 datoss
-function verDetalle(nombre, precio, imagen, descripcion, especificaciones) {
-    //relleno
-    document.getElementById('modalTitulo').innerText = nombre;
-    document.getElementById('modalPrecio').innerText = '$' + precio.toLocaleString('es-CL');
-    document.getElementById('modalImagen').src = imagen;
-    document.getElementById('modalDescripcion').innerText = descripcion;
+    document.getElementById('modalTitulo').innerText = prod.nombre;
+    document.getElementById('modalPrecio').innerText = '$' + prod.precio.toLocaleString('es-CL');
+    document.getElementById('modalImagen').src = prod.imagen;
+    document.getElementById('modalDescripcion').innerText = prod.descripcion;
 
     const listaEspecs = document.getElementById('modalEspecificaciones');
     listaEspecs.innerHTML = '';
-    especificaciones.forEach(spec => {
+    prod.especificaciones.forEach(spec => {
         const li = document.createElement('li');
         li.innerText = spec;
         listaEspecs.appendChild(li);
     });
 
     document.getElementById('btnModalAgregar').onclick = function() {
-        agregarAlCarrito(nombre, precio, imagen);
+        agregarAlCarrito(prod.id);
         bootstrap.Modal.getInstance(document.getElementById('modalDetalleProducto')).hide();
     };
 
@@ -151,69 +162,101 @@ function verDetalle(nombre, precio, imagen, descripcion, especificaciones) {
     modal.show();
 }
 
-// ==========================================
-// LÓGICA DE USUARIOS (LOGIN Y REGISTRO)
-// ==========================================
+function mostrarOcultarPass(idDelInput, boton) {
+    let input = document.getElementById(idDelInput);
+    if (input.type === "password") { input.type = "text"; boton.innerText = "🙈"; } 
+    else { input.type = "password"; boton.innerText = "👁️"; }
+}
 
-// Función para el formulario de REGISTRO
+//Login de usuarios
 function registrarUsuario(event) {
-    event.preventDefault(); // Evita que la página se recargue al enviar el formulario
-
-    // Se capturan datos del nuevo diseño
+    event.preventDefault(); 
     const nombre = document.getElementById('nombreRegistro').value;
     const email = document.getElementById('emailRegistro').value;
     const pass1 = document.getElementById('pass1Registro').value;
     const pass2 = document.getElementById('pass2Registro').value;
 
-    // 1. Validar contraseñas
-    if (pass1 !== pass2) {
-        alert("¡Error! Las contraseñas no coinciden. Por favor, revísalas.");
-        return; 
-    }
+    if (pass1 !== pass2) { alert("¡Error! Las contraseñas no coinciden."); return; }
 
-    // Trae user guardado o se crea lista nueva
     const usuarios = JSON.parse(localStorage.getItem('listaUsuarios')) || [];
+    if (usuarios.find(user => user.email === email)) { alert("¡Error! Correo ya registrado."); return; }
 
-    // Evitamos que el ingreso sea con el mismo correo(duplicado)
-    const usuarioExiste = usuarios.find(user => user.email === email);
-    if (usuarioExiste) {
-        alert("¡Error! Este correo ya se encuentra registrado.");
-        return; 
-    }
-
-    // Si no existe se agrega y se guarda
     usuarios.push({ nombre: nombre, email: email, password: pass1 });
     localStorage.setItem('listaUsuarios', JSON.stringify(usuarios));
-
-    alert("¡Registro exitoso " + nombre + "! Ahora puedes iniciar sesión.");
-    window.location.href = 'login.html'; // Al registrase se redirige al login
+    alert("¡Registro exitoso! Ahora puedes iniciar sesión.");
+    window.location.href = 'login.html'; 
 }
 
-// Función para el formulario de LOGIN
+//Inicio de sesion para admin datos cargados por default
 function iniciarSesion(event) {
     event.preventDefault(); 
-
     const email = document.getElementById('emailLogin').value;
     const password = document.getElementById('passLogin').value;
 
-    // Traemos la lista de usuarios registrados desde la memoria
-    const usuarios = JSON.parse(localStorage.getItem('listaUsuarios')) || [];
-
-    // Buscamos si hay algún usuario con ese correo
-    const usuarioEncontrado = usuarios.find(user => user.email === email);
-
-    // Si NO se encuentra el correo:
-    if (!usuarioEncontrado) {
-        alert("Usuario no registrado o no encontrado.");
+    if (email === "admin@thinktech.cl" && password === "admin123") {
+        alert("¡Bienvenido al sistema, Administrador!");
+        window.location.href = 'vista_admin.html'; 
         return; 
     }
 
-    // Si el correo SÍ existe, pero la contraseña está mal:
-    if (usuarioEncontrado.password !== password) {
-        alert("Contraseña incorrecta. Inténtalo de nuevo.");
-        return;
-    }
+    const usuarios = JSON.parse(localStorage.getItem('listaUsuarios')) || [];
+    const usuarioEncontrado = usuarios.find(user => user.email === email);
 
-    alert("¡Sesión iniciada con éxito! Bienvenido(a).");
-    window.location.href = 'index.html'; // Lo enviamos a la página principal
+    if (!usuarioEncontrado) { alert("Usuario no registrado o no encontrado."); return; }
+    if (usuarioEncontrado.password !== password) { alert("Contraseña incorrecta."); return; }
+
+    alert("¡Sesión iniciada con éxito!");
+    window.location.href = 'index.html'; 
 }
+
+//Panel de admin (solo edicion)
+function renderizarTabla() {
+    let tbody = document.getElementById("tabla-productos-body");
+    if (tbody == null) return; 
+
+    let productos = obtenerProductos();
+    tbody.innerHTML = ""; 
+
+    for (let i = 0; i < productos.length; i++) {
+        let prod = productos[i];
+        tbody.innerHTML += `
+            <tr>
+                <td><strong>${prod.nombre}</strong></td>
+                <td>${prod.categoria}</td>
+                <td>${prod.stock} unids.</td>
+                <td>$${prod.precio.toLocaleString('es-CL')}</td>
+                <td class="text-end">
+                    <button class="btn btn-warning btn-sm text-dark fw-bold" onclick="editarProducto(${prod.id})">Editar</button>
+                </td>
+            </tr>`;
+    }
+}
+
+function editarProducto(idBuscado) {
+    let productos = obtenerProductos();
+    
+    for (let i = 0; i < productos.length; i++) {
+        if (productos[i].id === idBuscado) {
+            let nuevoPrecio = prompt("NUEVO PRECIO para: " + productos[i].nombre, productos[i].precio);
+            let nuevoStock = prompt("NUEVO STOCK para: " + productos[i].nombre, productos[i].stock);
+
+            if (nuevoPrecio != null && nuevoStock != null) {
+                productos[i].precio = Number(nuevoPrecio);
+                productos[i].stock = Number(nuevoStock);
+                
+                localStorage.setItem("admin_productos", JSON.stringify(productos));
+                renderizarTabla();
+                alert("¡Actualizado exitosamente!");
+            }
+            break; 
+        }
+    }
+}
+
+//Inicializador de pagina
+document.addEventListener("DOMContentLoaded", function() {
+    actualizarContador();
+    renderizarCarrito();
+    renderizarTabla(); 
+    actualizarPreciosVitrina(); // Actualiza el HTML estático con los datos de memoria
+});

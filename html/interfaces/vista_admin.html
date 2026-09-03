@@ -26,7 +26,7 @@
             <h4 class="fw-bold mb-3">Añadir Nuevo Producto</h4>
             <form id="form-simple-producto">
                 <div class="row g-3">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <label for="nombreProducto" class="form-label small fw-bold">Nombre</label>
                         <input type="text" id="nombreProducto" class="form-control" placeholder="Ej: Mouse Gamer" required>
                     </div>
@@ -37,9 +37,14 @@
                             <option value="Accesorios">Accesorios</option>
                         </select>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <label for="precioProducto" class="form-label small fw-bold">Precio ($)</label>
                         <input type="number" id="precioProducto" class="form-control" placeholder="19990" min="0" required>
+                    </div>
+                    <!-- NUEVO CAMPO DE STOCK -->
+                    <div class="col-md-2">
+                        <label for="stockProducto" class="form-label small fw-bold">Stock</label>
+                        <input type="number" id="stockProducto" class="form-control" placeholder="Ej: 10" min="0" required>
                     </div>
                     <div class="col-md-2 d-flex align-items-end">
                         <button type="submit" class="btn btn-success w-100 fw-bold">+ Agregar</button>
@@ -57,103 +62,24 @@
                         <tr>
                             <th>Producto</th>
                             <th>Categoría</th>
+                            <th>Stock</th>
                             <th>Precio</th>
-                            <th class="text-end">Acción</th>
+                            <th class="text-end">Acciones</th>
                         </tr>
                     </thead>
                     <tbody id="tabla-productos-body">
-                        </tbody>
+                    </tbody>
                 </table>
             </div>
         </section>
 
     </main>
 
-    <footer class="border-top py-3 text-center text-muted small bg-white mt-5">
-        © 2026 Think-Tech · Panel Simplificado
+    <footer class="border-top py-4 text-center text-muted small mt-5 bg-white">
+        © 2026 Think-Tech. Todos los derechos reservados.
     </footer>
 
-    <script>
-
-        // Cargar productos almacenados o los iniciales
-        function obtenerProductos() {
-            const productosGuardados = localStorage.getItem("admin_productos");
-            if (productosGuardados) {
-                return JSON.parse(productosGuardados);
-            } else {
-                localStorage.setItem("admin_productos", JSON.stringify(productosIniciales));
-                return productosIniciales;
-            }
-        }
-
-        // Formatear precio a formato de moneda (CLP)
-        function formatearPrecio(valor) {
-            return '$' + Number(valor).toLocaleString('es-CL');
-        }
-
-        // Renderizar/Dibujar la tabla en el HTML
-        function renderizarTabla() {
-            const productos = obtenerProductos();
-            const tbody = document.getElementById("tabla-productos-body");
-            tbody.innerHTML = "";
-
-            if (productos.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="4" class="text-center text-muted py-3">No hay productos registrados.</td></tr>`;
-                return;
-            }
-
-            productos.forEach(prod => {
-                const tr = document.createElement("tr");
-                tr.innerHTML = `
-                    <td><strong>${prod.nombre}</strong></td>
-                    <td>${prod.categoria}</td>
-                    <td>${formatearPrecio(prod.precio)}</td>
-                    <td class="text-end">
-                        <button class="btn btn-danger btn-sm py-0" onclick="eliminarProducto(${prod.id})">Borrar</button>
-                    </td>
-                `;
-                tbody.appendChild(tr);
-            });
-        }
-
-        // Agregar un nuevo producto
-        document.getElementById("form-simple-producto").addEventListener("submit", function(e) {
-            e.preventDefault();
-
-            const nombre = document.getElementById("nombreProducto").value.trim();
-            const categoria = document.getElementById("categoriaProducto").value;
-            const precio = parseFloat(document.getElementById("precioProducto").value);
-
-            if (!nombre || isNaN(precio)) return;
-
-            const productos = obtenerProductos();
-            const nuevoProducto = {
-                id: Date.now(), // ID único basado en la fecha/hora actual
-                nombre: nombre,
-                categoria: categoria,
-                precio: precio
-            };
-
-            productos.push(nuevoProducto);
-            localStorage.setItem("admin_productos", JSON.stringify(productos));
-
-            // Limpiar formulario y refrescar la tabla
-            this.reset();
-            renderizarTabla();
-        });
-
-        // Eliminar producto por ID
-        function eliminarProducto(id) {
-            if (confirm("¿Estás seguro de que deseas eliminar este producto?")) {
-                let productos = obtenerProductos();
-                productos = productos.filter(p => p.id !== id);
-                localStorage.setItem("admin_productos", JSON.stringify(productos));
-                renderizarTabla();
-            }
-        }
-
-        // Cargar la tabla al iniciar la página
-        document.addEventListener("DOMContentLoaded", renderizarTabla);
-    </script>
+    <!--conexion al js -->
+    <script src="../../js/scripts.js"></script>
 </body>
 </html>
