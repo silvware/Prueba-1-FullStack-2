@@ -43,53 +43,66 @@
   <!-- CONTENIDO PRINCIPAL -->
   <main class="container py-5">
     <!-- Párrafo principal de texto. -->
-    <h1 class="hTextAnim fw-bold text-center">Bienvenid@ a Think-Tech:</h1>
+    <h1 class="hTextAnim fw-bold text-center">Bienvenid@ a <u>Think-Tech:</u></h1>
     <p class="nTextAnim lead text-center">¡La mejor tienda de computadoras de Chile!</p>
     <!--codigo carrousel + cards-->
-    <div id="carouselIndex" class="carousel slide" data-bs-ride="carousel">
+    <div id="carouselIndex" class="carousel slide nTextAnim" data-bs-ride="carousel">
       <div class="carousel-inner">
 	<div class="carousel-item active">
-	  <div class="card border-secondary">
-	    <img src="../../resources/indeximg1.avif" class="d-block object-fit-contain" alt="PlaceHolder1">
-	    <div class="card-img-overlay">
-	      <h2 class="fw-bold">Esto es un place-holder de overlay</h2>
+	  <div class="card ratio-21x9">
+	    <img src="../../resources/indeximg1.avif" class="d-block object-fit-fill border-secondary" alt="PlaceHolder1">
+<div class="card-img-overlay">
+	      <h1 class="fw-bold text-light">Think-Tech es una tienda<br>de computadoras<br>orientada al publico general y <br>empresarial<br>de alta fidelidad.</h1>
 	    </div>
 	  </div>
 	</div>
-	<div class="carousel-item">
-	  <div class="card border-secondary">
-	    <div class="card border-secondary">
-	      <img src="../../resources/indeximg2.avif" class="d-block object-fit-contain" alt="placeholder2">
-	      <div class="card-img-overlay">
-		<h2 class="fw-bold object-fit-contain">PlaceHOlder2</h2>
+	<div class="carousel-item ratio-21x9">
+	  <div class="card">
+	      <img src="../../resources/indeximg2.avif" class="object-fit-contain border" alt="placeholder2">
+	      <div class="card-img-overlay">           <!--Tuve que pensar en una forma para solucionar esto de forma rapida -silvware-->
+		<h1 class="fw-bold text-end text-light"><br><br><br><br><br>Nuestras computadoras<br>vienen tanto nuevas como <br>restauradas<br>por nuestros tecnicos<br>especializados<br>bajo un lente de calidad profesional</h1>
 	      </div>
-	    </div>
+ 	    </div>
 	  </div>
 	</div>
-	<div class="carousel-item">
-	  <div class="card border-secondary">
-	    <img src="..." class="d-block object-fit-contain" alt="placeholder3">
-	    <div class="card-img-overlay">
-	      <h2 class="fw-bold">PlaceHolder3</h2>
-	    </div>
+        <!--TODO: terminar el slideshow*-->
+      </div>
+    </div>
+    <br>
+    <h2 class="fw-bold text-center nTextAnim bg-secondary rounded shadow text-light">Productos mas vendidos</h2> <!--PlaceHolder que hay que adaptar*.-->
+    <!--codigo de CARDS-->
+    <br>
+    <div class="row nTextAnim">
+      <div class="col-sm-6">
+	<div class="card">
+	  <img src="../../resources/acer.jpg" class="card-img-top" alt="Acer Aspire 5">
+	  <div class="card-body">
+	    <h5 class="card-title bg-primary text-light text-center">Acer Aspire 5</h5>
+	    <p class="card-text text-center">Excelente opcion calidad/precio para tareas de ofimatica y uso diario.<br><br><b><u>Especificaciones:</u></b><br>Procesador Intel i5<br>8GB de memoria RAM<br>SSD de 256GB</p>
+	    <a href="pc.html" class="btn shadow btn-warning">Ir a Computadoras</a>
+	  </div>
+	</div>
+      </div>
+      <div class="col-sm-6">
+	<div class="card">
+	  <img src="../../resources/hp.png" class="card-img-top" alt="HP pavilion 15">
+	  <div class="card-body">
+	    <h5 class="card-title bg-primary text-light text-center">HP Pavilion 15</h5>
+	    <p class="card-text text-center">Perfecto para tareas de ofimatica/estudios y uso diario, con su poderosa arquitectura Ryzen Zen<br><br><b><u>Especificaciones:</u></b><br>AMD Ryzen 5<br>8GB de RAM<br>SSD de 512GB</p>
+	    <a href="pc.html" class="btn shadow btn-warning">Ir a Computadoras</a>
 	  </div>
 	</div>
       </div>
     </div>
-    
-    <p>PRODUCTOS MAS VENDIDOS.</p>
-    <!--codigo de CARDS-->
-    <p>[BLOG DE ACTUALIZACIONES DE LA TIENDA]
-    </p>
+    <!--Posiblemente incluir 2 computadoras como referentes principales.*-->
+    <!-- pensar en como implementar el blog de actualizaciones bajo un diseño limpio y eficiente.-->
   </main>
 
   <!-- FOOTER -->
   <footer class="border-top py-4 text-center text-muted small mt-5 bg-white">
     © 2026 Think-Tech. Todos los derechos reservados.
   </footer>
-
-  <!-- Archivos JavaScript (Obligatorios para el menú móvil y el carrito) -->
-  
   
 </body>
 </html>
+<!-- Por cada meta alcanzada, se debe de agregar un * al final del comentario (silvware)-->
