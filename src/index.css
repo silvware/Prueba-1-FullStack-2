@@ -1,0 +1,32 @@
+/* src/index.css */
+
+/* Animaciones para los textos principales */
+.hTextAnim {
+    color: white;
+    margin-left: auto;
+    position: relative;
+    animation: hTextMove 2s;
+    animation-fill-mode: forwards;
+}
+
+.nTextAnim {
+    color: white;
+    margin-left: auto;
+    position: relative;
+    animation: nTextMove 2s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes hTextMove {
+    from { top: -50px; opacity: 0; }
+    to { top: 0px; color: black; opacity: 1; }
+}
+
+@keyframes nTextMove {
+    from { top: -60px; opacity: 0; }
+    to { top: 0px; color: black; opacity: 1; }
+}
+
+.textCardColor {
+    color: white;
+}
