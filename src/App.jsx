@@ -1,6 +1,7 @@
 // src/App.jsx
 import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// Añadimos 'Navigate' a la importación
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 import Navigation from './components/Navigation';
 import CartToast from './components/CartToast';
@@ -23,9 +24,18 @@ function App() {
   const [showToast, setShowToast] = useState(false);
   const [productoAgregado, setProductoAgregado] = useState("");
 
-  // NUEVO: Estado para el usuario conectado
+  // Modificamos el estado para que soporte un objeto y limpie sesiones viejas incompatibles
   const [usuarioActivo, setUsuarioActivo] = useState(() => {
-    return localStorage.getItem('sesion_thinktech') || null;
+    const saved = localStorage.getItem('sesion_thinktech');
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch (e) {
+        localStorage.removeItem('sesion_thinktech');
+        return null;
+      }
+    }
+    return null;
   });
 
   useEffect(() => {
@@ -44,10 +54,9 @@ function App() {
     setCart(nuevoCarrito);
   };
 
-  // NUEVAS FUNCIONES: Manejo de sesión
-  const handleLogin = (nombreUsuario) => {
-    setUsuarioActivo(nombreUsuario);
-    localStorage.setItem('sesion_thinktech', nombreUsuario);
+  const handleLogin = (datosUsuario) => {
+    setUsuarioActivo(datosUsuario);
+    localStorage.setItem('sesion_thinktech', JSON.stringify(datosUsuario));
   };
 
   const handleLogout = () => {
@@ -57,9 +66,7 @@ function App() {
 
   return (
     <Router>
-      {/* Pasamos el usuario activo y la función de cierre al Navbar */}
       <Navigation cantidadCarrito={cart.length} usuarioActivo={usuarioActivo} onLogout={handleLogout} />
-
       <CartToast show={showToast} onClose={() => setShowToast(false)} productoNombre={productoAgregado} />
 
       <main className="container py-5">
@@ -70,11 +77,13 @@ function App() {
           <Route path="/nosotros" element={<Nosotros />} />
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/carrito" element={<Carrito cart={cart} onRemove={eliminarDelCarrito} />} />
-          
-          {/* Pasamos la función de login al componente Login */}
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
           <Route path="/registro" element={<Registro />} />
-          <Route path="/admin" element={<Admin />} />
+          
+          {/* RUTA PROTEGIDA: Si es admin entra a <Admin/>, si no, lo expulsa a "/" */}
+          <Route path="/admin" element={
+            usuarioActivo?.isAdmin ? <Admin /> : <Navigate to="/" />
+          } />
         </Routes>
       </main>
 

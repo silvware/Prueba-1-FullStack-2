@@ -7,7 +7,7 @@ export default function Navigation({ cantidadCarrito, usuarioActivo, onLogout })
 
   const cerrarSesion = () => {
     onLogout();
-    navigate('/'); // Redirige al home al cerrar sesión
+    navigate('/'); 
   };
 
   return (
@@ -27,13 +27,18 @@ export default function Navigation({ cantidadCarrito, usuarioActivo, onLogout })
           </Nav>
           <Nav className="align-items-center">
             
-            {/* RENDERIZADO CONDICIONAL DE SESIÓN */}
+            {/* RENDERIZADO CONDICIONAL DE ROLES */}
             {usuarioActivo ? (
               <div className="d-flex align-items-center me-3">
-                {/* Convertimos el saludo en un enlace directo al panel */}
-                <Link to="/admin" className="fw-bold text-primary me-3 text-decoration-none" title="Ir al Panel de Administración">
-                  👋 Bienvenido, {usuarioActivo}
-                </Link>
+                {usuarioActivo.isAdmin ? (
+                  <Link to="/admin" className="fw-bold text-danger me-3 text-decoration-none" title="Ir al Panel de Administración">
+                    ⚙️ Panel Admin ({usuarioActivo.nombre})
+                  </Link>
+                ) : (
+                  <span className="fw-bold text-primary me-3">
+                    👋 Bienvenido, {usuarioActivo.nombre}
+                  </span>
+                )}
                 <Button variant="outline-danger" size="sm" onClick={cerrarSesion}>
                   Cerrar sesión
                 </Button>

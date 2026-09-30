@@ -8,15 +8,17 @@ export default function Admin() {
   const [showModal, setShowModal] = useState(false);
   const [editandoId, setEditandoId] = useState(null);
 
+  // Ampliamos el estado para incluir descripción y especificaciones
   const [formData, setFormData] = useState({
     nombre: '',
     categoria: 'Computadoras',
     precio: '',
     stock: '',
-    imagen: ''
+    imagen: '',
+    descripcion: '',
+    especificaciones: ''
   });
 
-  // Carga inicial usando nuestra función centralizada
   useEffect(() => {
     const bd = inicializarBD();
     setProductos(bd);
@@ -37,10 +39,14 @@ export default function Admin() {
   const handleAbrirModal = (prod = null) => {
     if (prod) {
       setEditandoId(prod.id);
-      setFormData(prod);
+      setFormData({
+        ...prod,
+        // Si el producto tiene especificaciones en array, las unimos con comas para el input de texto
+        especificaciones: prod.especificaciones ? prod.especificaciones.join(', ') : ''
+      });
     } else {
       setEditandoId(null);
-      setFormData({ nombre: '', categoria: 'Computadoras', precio: '', stock: '', imagen: '' });
+      setFormData({ nombre: '', categoria: 'Computadoras', precio: '', stock: '', imagen: '', descripcion: '', especificaciones: '' });
     }
     setShowModal(true);
   };
@@ -48,11 +54,21 @@ export default function Admin() {
   const handleSubmit = (e) => {
     e.preventDefault();
     
+    // LÓGICA DE ID SECUENCIAL: Busca el ID más alto y le suma 1. Si no hay productos, empieza en 1.
+    const nuevoIdSecuencial = productos.length > 0 ? Math.max(...productos.map(p => p.id)) + 1 : 1;
+
+    // Convertimos el texto separado por comas en un arreglo (array) real para la base de datos
+    const arrayEspecificaciones = formData.especificaciones
+      .split(',')
+      .map(item => item.trim())
+      .filter(item => item !== '');
+
     const nuevoProducto = {
       ...formData,
       precio: Number(formData.precio),
       stock: Number(formData.stock),
-      id: editandoId ? editandoId : Date.now()
+      especificaciones: arrayEspecificaciones,
+      id: editandoId ? editandoId : nuevoIdSecuencial 
     };
 
     if (editandoId) {
@@ -111,44 +127,59 @@ export default function Admin() {
         </tbody>
       </Table>
 
-      <Modal show={showModal} onHide={() => setShowModal(false)} backdrop="static">
+      <Modal show={showModal} onHide={() => setShowModal(false)} backdrop="static" size="lg">
         <Modal.Header closeButton>
           <Modal.Title className="fw-bold">{editandoId ? 'Editar Producto' : 'Agregar Nuevo Producto'}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
-            <Form.Group className="mb-3">
-              <Form.Label>Nombre del producto</Form.Label>
-              <Form.Control type="text" value={formData.nombre} onChange={e => setFormData({...formData, nombre: e.target.value})} required />
-            </Form.Group>
-            
-            <Form.Group className="mb-3">
-              <Form.Label>Categoría</Form.Label>
-              <Form.Select value={formData.categoria} onChange={e => setFormData({...formData, categoria: e.target.value})}>
-                <option value="Computadoras">Computadoras</option>
-                <option value="Accesorios">Accesorios</option>
-              </Form.Select>
-            </Form.Group>
+            <Row>
+              <Col md={6}>
+                <Form.Group className="mb-3">
+                  <Form.Label>Nombre del producto</Form.Label>
+                  <Form.Control type="text" value={formData.nombre} onChange={e => setFormData({...formData, nombre: e.target.value})} required />
+                </Form.Group>
+              </Col>
+              <Col md={6}>
+                <Form.Group className="mb-3">
+                  <Form.Label>Categoría</Form.Label>
+                  <Form.Select value={formData.categoria} onChange={e => setFormData({...formData, categoria: e.target.value})}>
+                    <option value="Computadoras">Computadoras</option>
+                    <option value="Accesorios">Accesorios</option>
+                  </Form.Select>
+                </Form.Group>
+              </Col>
+            </Row>
             
             <Row>
-              <Col>
+              <Col md={6}>
                 <Form.Group className="mb-3">
                   <Form.Label>Precio ($)</Form.Label>
                   <Form.Control type="number" min="0" value={formData.precio} onChange={e => setFormData({...formData, precio: e.target.value})} required />
                 </Form.Group>
               </Col>
-              <Col>
+              <Col md={6}>
                 <Form.Group className="mb-3">
                   <Form.Label>Stock</Form.Label>
                   <Form.Control type="number" min="0" value={formData.stock} onChange={e => setFormData({...formData, stock: e.target.value})} required />
                 </Form.Group>
               </Col>
             </Row>
-            
-            <Form.Group className="mb-4">
+
+            <Form.Group className="mb-3">
               <Form.Label>Ruta de la Imagen</Form.Label>
               <Form.Control type="text" placeholder="/resources/ejemplo.png" value={formData.imagen} onChange={e => setFormData({...formData, imagen: e.target.value})} required />
-              <Form.Text className="text-muted">Asegúrate de que la imagen exista en la carpeta public/resources/</Form.Text>
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Label>Descripción del producto</Form.Label>
+              <Form.Control as="textarea" rows={3} value={formData.descripcion} onChange={e => setFormData({...formData, descripcion: e.target.value})} placeholder="Ej: Excelente equipo recomendado para tareas..." required />
+            </Form.Group>
+
+            <Form.Group className="mb-4">
+              <Form.Label>Especificaciones (separadas por coma)</Form.Label>
+              <Form.Control type="text" value={formData.especificaciones} onChange={e => setFormData({...formData, especificaciones: e.target.value})} placeholder="Ej: 16 GB RAM, 512 GB SSD, Intel Core i5" required />
+              <Form.Text className="text-muted">Escribe cada característica separada por una coma.</Form.Text>
             </Form.Group>
             
             <Button variant="primary" type="submit" className="w-100 fw-bold">Guardar Cambios</Button>

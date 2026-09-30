@@ -19,7 +19,7 @@ export default function Home({ onAddToCart }) {
         <h1 className="fw-bold">
           Bienvenid@ a <span className="text-primary text-decoration-underline">Think-Tech:</span>
         </h1>
-        <p className="text-muted">¡La mejor tienda de computadoras de Chile!</p>
+        <p className="text-muted">¡La mejor tienda de computadoras y accesorios de Chile!</p>
       </div>
 
       <Carousel className="mb-5 shadow-sm rounded overflow-hidden">
