@@ -1,6 +1,5 @@
 // src/App.jsx
 import { useState, useEffect } from 'react';
-// Añadimos 'Navigate' a la importación
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 import Navigation from './components/Navigation';
@@ -14,6 +13,7 @@ import Contacto from './pages/Contacto';
 import Login from './pages/Login';
 import Registro from './pages/Registro';
 import Admin from './pages/Admin';
+import Busqueda from './pages/Busqueda'; // NUEVO COMPONENTE
 
 function App() {
   const [cart, setCart] = useState(() => {
@@ -24,13 +24,11 @@ function App() {
   const [showToast, setShowToast] = useState(false);
   const [productoAgregado, setProductoAgregado] = useState("");
 
-  // Modificamos el estado para que soporte un objeto y limpie sesiones viejas incompatibles
   const [usuarioActivo, setUsuarioActivo] = useState(() => {
     const saved = localStorage.getItem('sesion_thinktech');
     if (saved) {
-      try {
-        return JSON.parse(saved);
-      } catch (e) {
+      try { return JSON.parse(saved); } 
+      catch (e) {
         localStorage.removeItem('sesion_thinktech');
         return null;
       }
@@ -54,6 +52,11 @@ function App() {
     setCart(nuevoCarrito);
   };
 
+  // NUEVA FUNCIÓN: Para limpiar el carrito al comprar
+  const vaciarCarrito = () => {
+    setCart([]);
+  };
+
   const handleLogin = (datosUsuario) => {
     setUsuarioActivo(datosUsuario);
     localStorage.setItem('sesion_thinktech', JSON.stringify(datosUsuario));
@@ -74,16 +77,16 @@ function App() {
           <Route path="/" element={<Home onAddToCart={agregarAlCarrito} />} />
           <Route path="/pc" element={<Computadoras onAddToCart={agregarAlCarrito} />} />
           <Route path="/accesorios" element={<Accesorios onAddToCart={agregarAlCarrito} />} />
+          <Route path="/busqueda" element={<Busqueda onAddToCart={agregarAlCarrito} />} />
           <Route path="/nosotros" element={<Nosotros />} />
           <Route path="/contacto" element={<Contacto />} />
-          <Route path="/carrito" element={<Carrito cart={cart} onRemove={eliminarDelCarrito} />} />
+          
+          {/* Pasamos la función vaciarCarrito al componente */}
+          <Route path="/carrito" element={<Carrito cart={cart} onRemove={eliminarDelCarrito} onClearCart={vaciarCarrito} />} />
+          
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
           <Route path="/registro" element={<Registro />} />
-          
-          {/* RUTA PROTEGIDA: Si es admin entra a <Admin/>, si no, lo expulsa a "/" */}
-          <Route path="/admin" element={
-            usuarioActivo?.isAdmin ? <Admin /> : <Navigate to="/" />
-          } />
+          <Route path="/admin" element={usuarioActivo?.isAdmin ? <Admin /> : <Navigate to="/" />} />
         </Routes>
       </main>
 
