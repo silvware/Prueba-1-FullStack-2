@@ -19,7 +19,7 @@ export default function Home({ onAddToCart }) {
         <h1 className="fw-bold">
           Bienvenid@ a <span className="text-primary text-decoration-underline">Think-Tech:</span>
         </h1>
-        <p className="text-muted">¡La mejor tienda de computadoras y accesorios de Chile!</p>
+        <p className="text-secondary">¡La mejor tienda de computadoras de Chile!</p>
       </div>
 
       <Carousel className="mb-5 shadow-sm rounded overflow-hidden">
@@ -29,10 +29,11 @@ export default function Home({ onAddToCart }) {
             className="d-block w-100"
             src="/resources/indeximg1.avif"
             alt="Profesional usando Think-Tech"
-            style={{ height: '400px', objectFit: 'cover', filter: 'brightness(0.6)' }}
+            style={{ height: '400px', objectFit: 'cover', filter: 'brightness(0.5)' }}
           />
-          <Carousel.Caption className="pb-5">
-            <h3 className="fw-bold lh-base">
+          {/* Agregamos text-white aquí */}
+          <Carousel.Caption className="pb-5 text-white">
+            <h3 className="fw-bold lh-base text-white">
               Think-Tech es una tienda<br/>
               de computadoras orientada al publico<br/>
               general y empresarial de alta fidelidad.
@@ -46,10 +47,11 @@ export default function Home({ onAddToCart }) {
             className="d-block w-100"
             src="/resources/indeximg2.avif"
             alt="Stock de computadoras HP"
-            style={{ height: '400px', objectFit: 'cover', filter: 'brightness(0.6)' }}
+            style={{ height: '400px', objectFit: 'cover', filter: 'brightness(0.5)' }}
           />
-          <Carousel.Caption className="pb-5">
-            <h3 className="fw-bold lh-base">
+          {/* Agregamos text-white aquí */}
+          <Carousel.Caption className="pb-5 text-white">
+            <h3 className="fw-bold lh-base text-white">
               Nuestras computadoras vienen nuevas<br/>
               y restauradas por técnicos especializados.
             </h3>

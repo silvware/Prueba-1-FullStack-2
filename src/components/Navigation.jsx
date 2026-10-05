@@ -1,11 +1,12 @@
-// src/components/Navigation.jsx
 import { useState } from 'react';
 import { Navbar, Nav, Container, Badge, Button, Form } from 'react-bootstrap';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { useTheme } from '../context/ThemeContext';
 
 export default function Navigation({ cantidadCarrito, usuarioActivo, onLogout }) {
   const navigate = useNavigate();
   const [termino, setTermino] = useState('');
+  const { theme, toggleTheme } = useTheme();
 
   const cerrarSesion = () => {
     onLogout();
@@ -22,7 +23,7 @@ export default function Navigation({ cantidadCarrito, usuarioActivo, onLogout })
   };
 
   return (
-    <Navbar bg="white" expand="lg" className="shadow-sm sticky-top mb-4">
+    <Navbar bg="body-tertiary" expand="lg" className="shadow-sm sticky-top mb-4">
       <Container>
         <Navbar.Brand as={Link} to="/">
           <img src="/resources/logopagina.png" alt="Think-Tech" height="40" />
@@ -50,6 +51,17 @@ export default function Navigation({ cantidadCarrito, usuarioActivo, onLogout })
               <Button variant="outline-primary" size="sm" type="submit" className="rounded-pill px-3">🔍</Button>
             </Form>
 
+            {/* BOTÓN DE CAMBIO DE TEMA */}
+            <Button 
+              variant={theme === 'light' ? 'outline-dark' : 'outline-warning'} 
+              size="sm" 
+              onClick={toggleTheme} 
+              className="me-3 rounded-circle"
+              title="Cambiar Modo Claro/Oscuro"
+            >
+              {theme === 'light' ? '🌙' : '☀️'}
+            </Button>
+
             {usuarioActivo ? (
               <div className="d-flex align-items-center me-3">
                 {usuarioActivo.isAdmin ? (
@@ -70,7 +82,7 @@ export default function Navigation({ cantidadCarrito, usuarioActivo, onLogout })
               </>
             )}
 
-            <Nav.Link as={Link} to="/carrito" className="text-dark fw-bold">
+            <Nav.Link as={Link} to="/carrito" className="fw-bold">
               🛒 Carrito <Badge bg="primary" className="rounded-pill">{cantidadCarrito}</Badge>
             </Nav.Link>
           </Nav>

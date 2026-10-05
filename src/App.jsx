@@ -1,4 +1,3 @@
-// src/App.jsx
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
@@ -52,7 +51,6 @@ function App() {
     setCart(nuevoCarrito);
   };
 
-  // NUEVA FUNCIÓN: Para limpiar el carrito al comprar
   const vaciarCarrito = () => {
     setCart([]);
   };
@@ -81,7 +79,6 @@ function App() {
           <Route path="/nosotros" element={<Nosotros />} />
           <Route path="/contacto" element={<Contacto />} />
           
-          {/* Pasamos la función vaciarCarrito al componente */}
           <Route path="/carrito" element={<Carrito cart={cart} onRemove={eliminarDelCarrito} onClearCart={vaciarCarrito} />} />
           
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
@@ -90,7 +87,7 @@ function App() {
         </Routes>
       </main>
 
-      <footer className="border-top py-4 text-center text-muted small mt-5 bg-white">
+      <footer className="border-top py-4 text-center text-body-secondary small mt-5 bg-body-tertiary">
         © 2026 Think-Tech. Todos los derechos reservados.
       </footer>
     </Router>

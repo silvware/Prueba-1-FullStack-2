@@ -1,4 +1,3 @@
-// src/pages/Carrito.jsx
 import { useState } from 'react';
 import { Container, Row, Col, Table, Button, Alert, Modal, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -43,7 +42,7 @@ export default function Carrito({ cart, onRemove, onClearCart }) {
   if (cart.length === 0 && !showSuccess) {
     return (
       <Container className="text-center animate__animated animate__fadeIn py-5">
-        <h3 className="mb-4 text-muted">Tu carrito está vacío 🛒</h3>
+        <h3 className="mb-4 text-body-secondary">Tu carrito está vacío 🛒</h3>
         <Link to="/pc">
           <Button variant="primary" size="lg" className="rounded-pill px-4">Ir a comprar</Button>
         </Link>
@@ -69,34 +68,36 @@ export default function Carrito({ cart, onRemove, onClearCart }) {
       ) : (
         <Row>
           <Col lg={8}>
-            <Table responsive hover className="align-middle bg-white shadow-sm rounded">
-              <thead className="table-light">
-                <tr>
-                  <th>Producto</th>
-                  <th>Nombre</th>
-                  <th>Precio</th>
-                  <th>Acción</th>
-                </tr>
-              </thead>
-              <tbody>
-                {cart.map((prod, index) => (
-                  <tr key={index}>
-                    <td><img src={prod.imagen} alt={prod.nombre} width="50" className="rounded"/></td>
-                    <td className="fw-bold">{prod.nombre}</td>
-                    <td className="text-primary fw-bold">${prod.precio.toLocaleString('es-CL')}</td>
-                    <td>
-                      <Button variant="outline-danger" size="sm" onClick={() => onRemove(index)}>
-                        Eliminar
-                      </Button>
-                    </td>
+            <div className="table-responsive shadow-sm rounded">
+              <Table hover align="middle" className="mb-0">
+                <thead>
+                  <tr>
+                    <th>Producto</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Acción</th>
                   </tr>
-                ))}
-              </tbody>
-            </Table>
+                </thead>
+                <tbody>
+                  {cart.map((prod, index) => (
+                    <tr key={index}>
+                      <td><img src={prod.imagen} alt={prod.nombre} width="50" className="rounded"/></td>
+                      <td className="fw-bold">{prod.nombre}</td>
+                      <td className="text-primary fw-bold">${prod.precio.toLocaleString('es-CL')}</td>
+                      <td>
+                        <Button variant="outline-danger" size="sm" onClick={() => onRemove(index)}>
+                          Eliminar
+                        </Button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            </div>
           </Col>
           
-          <Col lg={4}>
-            <div className="bg-light p-4 rounded shadow-sm border">
+          <Col lg={4} className="mt-4 mt-lg-0">
+            <div className="bg-body-tertiary p-4 rounded shadow-sm border">
               <h4 className="fw-bold mb-3 border-bottom pb-2">Resumen</h4>
               <div className="d-flex justify-content-between mb-3 fs-5">
                 <span>Total a pagar:</span>
@@ -117,10 +118,10 @@ export default function Carrito({ cart, onRemove, onClearCart }) {
 
       {/* MODAL DE CHECKOUT (Formulario de envío) */}
       <Modal show={showCheckout} onHide={() => setShowCheckout(false)} backdrop="static" centered>
-        <Modal.Header closeButton className="bg-light">
+        <Modal.Header closeButton className="bg-body-tertiary">
           <Modal.Title className="fw-bold">Detalles de Envío y Pago</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className="bg-body">
           <Form onSubmit={procesarCompra}>
             <h5 className="fw-bold text-primary mb-3">Total: ${total.toLocaleString('es-CL')}</h5>
             

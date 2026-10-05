@@ -1,4 +1,3 @@
-// src/pages/Computadoras.jsx
 import { useState, useEffect } from 'react';
 import { Row, Col, Alert, Carousel } from 'react-bootstrap';
 import ProductCard from '../components/ProductCard';
@@ -16,7 +15,7 @@ export default function Computadoras({ onAddToCart }) {
   return (
     <div className="animate__animated animate__fadeIn">
       
-      <Carousel className="mb-5 shadow-sm rounded overflow-hidden">
+      <Carousel className="mb-5 shadow-sm rounded overflow-hidden" data-bs-theme="dark">
         <Carousel.Item>
           <img
             className="d-block w-100"
@@ -24,9 +23,9 @@ export default function Computadoras({ onAddToCart }) {
             alt="Línea Premium"
             style={{ height: '350px', objectFit: 'cover', filter: 'brightness(0.7)' }}
           />
-          <Carousel.Caption className="pb-4">
-            <h2 className="fw-bold shadow-text">Diseño Premium</h2>
-            <p>Descubre los ultrabooks más avanzados y ligeros del mercado.</p>
+          <Carousel.Caption className="pb-4 text-white">
+            <h2 className="fw-bold shadow-text text-white">Diseño Premium</h2>
+            <p className="text-white">Descubre los ultrabooks más avanzados y ligeros del mercado.</p>
           </Carousel.Caption>
         </Carousel.Item>
 
@@ -37,9 +36,9 @@ export default function Computadoras({ onAddToCart }) {
             alt="Línea Gamer"
             style={{ height: '350px', objectFit: 'cover', filter: 'brightness(0.7)' }}
           />
-          <Carousel.Caption className="pb-4">
-            <h2 className="fw-bold shadow-text">Equipos Gamer</h2>
-            <p>Máxima potencia gráfica para tus sesiones competitivas.</p>
+          <Carousel.Caption className="pb-4 text-white">
+            <h2 className="fw-bold shadow-text text-white">Equipos Gamer</h2>
+            <p className="text-white">Máxima potencia gráfica para tus sesiones competitivas.</p>
           </Carousel.Caption>
         </Carousel.Item>
 
@@ -50,9 +49,9 @@ export default function Computadoras({ onAddToCart }) {
             alt="Línea Profesional"
             style={{ height: '350px', objectFit: 'cover', filter: 'brightness(0.7)' }}
           />
-          <Carousel.Caption className="pb-4">
-            <h2 className="fw-bold shadow-text">Estaciones de Trabajo</h2>
-            <p>Rendimiento absoluto para profesionales y empresas exigentes.</p>
+          <Carousel.Caption className="pb-4 text-white">
+            <h2 className="fw-bold shadow-text text-white">Estaciones de Trabajo</h2>
+            <p className="text-white">Rendimiento absoluto para profesionales y empresas exigentes.</p>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
