@@ -1,0 +1,172 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Code coverage report for data/db.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+    
+<body>
+<div class='wrapper'>
+    <div class='pad1'>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">data</a> db.js</h1>
+        <div class='clearfix'>
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">28.57% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>2/7</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>0/4</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>0/1</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">28.57% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>2/7</span>
+            </div>
+        
+            
+        </div>
+        <p class="quiet">
+            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+        </p>
+        <template id="filterTemplate">
+            <div class="quiet">
+                Filter:
+                <input type="search" id="fileSearch">
+            </div>
+        </template>
+    </div>
+    <div class='status-line low'></div>
+    <pre><table class="coverage">
+<tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
+<a name='L2'></a><a href='#L2'>2</a>
+<a name='L3'></a><a href='#L3'>3</a>
+<a name='L4'></a><a href='#L4'>4</a>
+<a name='L5'></a><a href='#L5'>5</a>
+<a name='L6'></a><a href='#L6'>6</a>
+<a name='L7'></a><a href='#L7'>7</a>
+<a name='L8'></a><a href='#L8'>8</a>
+<a name='L9'></a><a href='#L9'>9</a>
+<a name='L10'></a><a href='#L10'>10</a>
+<a name='L11'></a><a href='#L11'>11</a>
+<a name='L12'></a><a href='#L12'>12</a>
+<a name='L13'></a><a href='#L13'>13</a>
+<a name='L14'></a><a href='#L14'>14</a>
+<a name='L15'></a><a href='#L15'>15</a>
+<a name='L16'></a><a href='#L16'>16</a>
+<a name='L17'></a><a href='#L17'>17</a>
+<a name='L18'></a><a href='#L18'>18</a>
+<a name='L19'></a><a href='#L19'>19</a>
+<a name='L20'></a><a href='#L20'>20</a>
+<a name='L21'></a><a href='#L21'>21</a>
+<a name='L22'></a><a href='#L22'>22</a>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// src/data/db.js
+&nbsp;
+const productosIniciales = [
+    { id: 1, nombre: "Lenovo ThinkPad T14 Gen 4", categoria: "Computadoras", precio: 649990, stock: 10, imagen: "/resources/ThinkpadT14.jpg", descripcion: "El ThinkPad T14 Gen 4 está diseñado para profesionales exigentes.", especificaciones: ["Pantalla de 14 pulgadas 1920 x 1080 IPS hasta un panel OLED 2.8K", "Procesador Intel Core i7 vPro de 13ªa gen o AMD Ryzen 7 PRO 7000", "Tarjeta Gráfica: Intel Iris Xe / UHD integradas o AMD Radeon 780M", "Memoria ram: 32 GB RAM DDR5", "Almacenamiento: 1 o 2 TB de SSD M.2 PCie 4.0", "Peso: 1.32kg"] },
+    { id: 2, nombre: "MacBook Air 13 M3", categoria: "Computadoras", precio: 999990, stock: 8, imagen: "/resources/macbookm3.jpg", descripcion: "El ultrabook más popular de Apple con chip M3.", especificaciones: ["de 13.6 pulgadas con resolución de 2560 × 1664 píxeles", "CPU de 8 núcleos (4 de rendimiento y 4 de eficiencia) y GPU de 8 o 10 núcleos. Incluye Neural Engine de 16 núcleos para inteligencia artificial", "Memoria ram: Configuraciones unificadas de 8 GB, 16 GB o 24 GB", "Almacenamiento: SSD desde 256 GB hasta 2 TB", "Peso: 1.24kg"] },
+    { id: 3, nombre: "Dell XPS 13", categoria: "Computadoras", precio: 1099990, stock: 5, imagen: "/resources/dell.jpg", descripcion: "Diseño premium y ultraligero con pantalla InfinityEdge.", especificaciones: ["Panel de 13.4 pulgadas con formato 16:10, con opciones de resolución FHD+, QHD+ o táctil OLED", "Intel Core Ultra (serie 200V) o variantes con Qualcomm Snapdragon X Elite/Plus optimizados para inteligencia artificial", "Memoria ram: Desde 16 GB hasta 32 GB o 64 GB DDR5", "Almacenamiento: 512 GB / 1 TB / 2 TB PCIe 3.0 SSD", "Peso: desde los 1.18 kg a 1.22 kg según el tipo de pantalla"] },
+    { id: 4, nombre: "ASUS ROG Strix G16", categoria: "Computadoras", precio: 1299990, stock: 3, imagen: "/resources/asus.png", descripcion: "Máxima potencia para gaming competitivo.", especificaciones: ["Panel de 16 pulgadas [ROG Nebula Display] con relación de aspecto 16:10, resolución 2.5K (2560 x 1600), tasa de refresco de 240Hz (3ms)", "Procesador: Opciones con Intel Core Ultra 9 275HX (hasta 24 núcleos) o procesadores AMD Ryzen de alto rendimiento", "Tarjeta Gràfica:  Hasta NVIDIA GeForce RTX 5080 Laptop con un TGP de 175W con Dynamic Boost, o configuraciones con RTX 5070 / 5060 según la variante", "Memoria ram: Hasta 32 GB de memoria DDR5 (ampliable)", " Desde 1 TB hasta 2 TB de almacenamiento en SSD M.2 NVMe PCIe 4.0", "Peso: 2.5kg"] },
+    { id: 5, nombre: "HP Pavilion 15", categoria: "Computadoras", precio: 449990, stock: 12, imagen: "/resources/hp.png", descripcion: "Un equipo versátil para clases virtuales y ofimática.", especificaciones: ["Pantalla tamaño de 15,6 pulgadas (39,6 cm), disponible en resoluciones HD o Full HD (1920 x 1080)", " Procesaor: Opciones con procesadores Intel Core (desde generaciones 11 hasta la serie 13 como el i5-1235U) o procesadores AMD Ryzen (series 5000 y 7000)", "Memoria ram: Desde 8 GB hasta 16 GB de tipo DDR4, ampliable", " Discos de estado sólido SSD M.2 NVMe que van desde los 256 GB hasta 1 TB", "Peso: 1.70kg"] },
+    { id: 6, nombre: "Acer Aspire 5", categoria: "Computadoras", precio: 379990, stock: 20, imagen: "/resources/acer.jpg", descripcion: "Excelente relación calidad-precio para tareas domésticas.", especificaciones: ["Pantalla: 15.6 pulgadas con resolución Full HD (1920 x 1080 píxeles), tecnología IPS y diseño antirreflejo", "Procesador: Opciones con procesadores Intel Core de 13.ª generación (por ejemplo, Intel Core i5-13420H u opciones i7) o equivalentes de AMD Ryzen", "Memoriaram:  Desde 8 GB hasta 16 GB o más de tipo DDR4 / DDR5 ", "Unidad de estado sólido (SSD) M.2 NVMe PCIe de 512 GB", "Peso: 1.78kg"] },
+    { id: 7, nombre: "Teclado Mecánico RGB", categoria: "Accesorios", precio: 34990, stock: 30, imagen: "/resources/tecla.webp", descripcion: "Teclado mecánico ideal para gaming.", especificaciones: ["Switches Red", "RGB Personalizable"] },
+    { id: 8, nombre: "Mouse Gamer", categoria: "Accesorios", precio: 19990, stock: 25, imagen: "/resources/mous.webp", descripcion: "Mouse ergonómico de alta precisión.", especificaciones: ["16.000 DPI", "6 botones programables"] },
+    { id: 9, nombre: "Audífonos Gamer 7.1", categoria: "Accesorios", precio: 27490, stock: 18, imagen: "/resources/audif.jpg", descripcion: "Diadema con audio surround.", especificaciones: ["Sonido 7.1", "Micrófono omnidireccional"] },
+    { id: 10, nombre: "Monitor 27 IPS", categoria: "Accesorios", precio: 159990, stock: 10, imagen: "/resources/monitot.webp", descripcion: "Monitor de 27 pulgadas con panel IPS diseñado para juegos competitivos y tareas de alta exigencia gráfica. Ofrece colores precisos, amplios ángulos de visión y una fluidez extrema sin desenfoque de movimiento gracias a su alta tasa de refresco..", especificaciones: ["Marca AOC, Resolución Full HD (1920x1080), Tasa de refresco de 144Hz, Tiempo de respuesta de 1ms, Panel IPS antirreflejo, Conectividad HDMI y DisplayPort"] },
+    { id: 11, nombre: "HDMI", categoria: "Accesorios", precio: 19990, stock: 50, imagen: "/resources/hdmi.webp", descripcion: "Cable HDMI de alta velocidad.", especificaciones: ["Largo: 1.5m", "Full HD"] },
+    { id: 12, nombre: "Memoria USB", categoria: "Accesorios", precio: 34500, stock: 45, imagen: "/resources/usb.webp", descripcion: "Unidad flash USB de alta capacidad con diseño retráctil y anillo para llavero que protege el conector. Es ideal para transferir archivos pesados, respaldar información importante y llevar contenido multimedia a cualquier lugar con alta velocidad.", especificaciones: ["Marca Kingston, Capacidad de 256GB, Interfaz USB 3.0, Velocidad de transferencia teórica de hasta 5 Gbps, Velocidad de lectura de hasta 130 MB/s, Compatible con Windows y Mac"] },
+    { id: 13, nombre: "Microfono Gamer", categoria: "Accesorios", precio: 49000, stock: 14, imagen: "/resources/micro.avif", descripcion: "Micrófono de alta calidad.", especificaciones: ["Conexión USB", "Cancelación de ruido"] }
+];
+&nbsp;
+export const <span class="fstat-no" title="function not covered" >inicializarBD = () =&gt; {</span>
+    const bdGuardada = <span class="cstat-no" title="statement not covered" >localStorage.getItem("admin_productos");</span>
+    // Si existe y tiene elementos, la retorna
+<span class="cstat-no" title="statement not covered" >    if (bdGuardada &amp;&amp; JSON.parse(bdGuardada).length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >        return JSON.parse(bdGuardada);</span>
+    } 
+    // Si está vacía, guarda el arreglo inicial y lo retorna
+    else {
+<span class="cstat-no" title="statement not covered" >        localStorage.setItem("admin_productos", JSON.stringify(productosIniciales));</span>
+<span class="cstat-no" title="statement not covered" >        return productosIniciales;</span>
+    }
+};</pre></td></tr></table></pre>
+
+                <div class='push'></div><!-- for sticky footer -->
+            </div><!-- /wrapper -->
+            <div class='footer quiet pad2 space-top1 center small'>
+                Code coverage generated by
+                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+                at 2026-10-05T23:45:12.761Z
+            </div>
+        <script src="../prettify.js"></script>
+        <script>
+            window.onload = function () {
+                prettyPrint();
+            };
+        </script>
+        <script src="../sorter.js"></script>
+        <script src="../block-navigation.js"></script>
+    </body>
+</html>
+    

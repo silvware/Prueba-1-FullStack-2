@@ -16,7 +16,7 @@ describe('Componente Carrito (Renderizado Condicional)', () => {
     
     // Verificamos que aparezca el mensaje y el botón de redirección
     expect(screen.getByText(/tu carrito está vacío/i)).toBeInTheDocument();
-    expect(screen.getByText(/ver catálogo/i)).toBeInTheDocument();
+    expect(screen.getByText(/Ir a comprar/i)).toBeInTheDocument();
   });
 
   it('Renderiza la lista de productos y calcula el total exacto cuando hay elementos', () => {
