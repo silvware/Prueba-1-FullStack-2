@@ -1,0 +1,21 @@
+npm install
+
+cd backend
+npm install
+
+--Arranque de sistema--
+
+Terminal1:
+
+cd backend
+node server.js
+
+(deberia mostrarse puerto http://localhost:3000)
+
+Terminal2:
+
+npm run dev
+
+(carpeta raiz proyecto) para testing
+
+npx vitest run --coverage
